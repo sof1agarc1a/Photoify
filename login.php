@@ -8,27 +8,40 @@ nav {
 <article>
     <h1>Photoify</h1>
 
-    <?php if(isset($_SESSION['wrong'])):
-        echo $_SESSION['wrong'];
-        session_destroy();
-    endif;
+    <?php
+		/* If the user is logged in redirect directly to the home-page */
+		if(isset($_SESSION['user'])):
+			redirect('/');
+		endif;
 
+		/* Error display if login failed */
+		if(isset($_SESSION['wrong'])):
+    	echo $_SESSION['wrong'];
+  		session_destroy();
+  	endif;
+
+		if(isset($_SESSION['empty'])):
+			echo $_SESSION['empty'];
+			session_destroy();
+		endif;
     ?>
 
     <form action="app/users/login.php" method="post">
         <div class="form-group">
-            <label for="email">Email</label>
-            <input class="form-control" type="email" name="email" value="francis@darjeeling.com" required>
-            <small class="form-text text-muted">Please provide the your email address.</small>
+            <label for="username">Username</label>
+            <input class="form-control" type="text" name="username" value="sof1agarc1a">
+            <small class="form-text text-muted">Please provide the your username.</small>
         </div><!-- /form-group -->
 
         <div class="form-group">
             <label for="password">Password</label>
-            <input class="form-control" type="password" name="password" value="the-darjeeling-limited" required>
+            <input class="form-control" type="password" name="password" value="sofia123">
             <small class="form-text text-muted">Please provide the your password (passphrase).</small>
         </div><!-- /form-group -->
 
-        <button type="submit" class="btn btn-primary">Login</button>
+				<button type="submit" class="btn btn-primary">Login</button>
+
+
     </form>
 
     <div>

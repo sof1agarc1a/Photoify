@@ -5,6 +5,19 @@ if(!isset($_SESSION['user'])):
   redirect('/login.php');
 endif; ?>
 
+<?php
+if(isset($_SESSION['wrong'])):
+	echo $_SESSION['wrong'];
+	session_destroy();
+endif;
+
+if(isset($_SESSION['empty'])):
+	echo $_SESSION['empty'];
+	session_destroy();
+endif;
+
+?>
+
 <article>
     <h1><?php echo $config['title']; ?></h1>
     <?php if(isset($_SESSION['user'])):
