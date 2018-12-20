@@ -1,11 +1,9 @@
 <?php
-
 declare(strict_types=1);
-
 require __DIR__.'/../autoload.php';
 
-// In this file we logout users.
+// Log out user.
 
-unset($_SESSION['user']);
+unset($_SESSION['logedin']);
 // session_destroy();
 redirect('/');
