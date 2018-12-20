@@ -5,10 +5,10 @@ require __DIR__.'/../autoload.php';
 if(isset($_POST['delete-account'])) {
 
 	$password = $_POST['password'];
-	$username = $_SESSION['logedin']['username'];
+	$user_id = $_SESSION['logedin']['user_id'];
 
-	$statement = $pdo->prepare('SELECT * FROM users WHERE username = :username');
-  $statement->bindParam(':username', $username, PDO::PARAM_STR);
+	$statement = $pdo->prepare('SELECT * FROM users WHERE user_id = :user_id');
+  $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
   $statement->execute();
   $user = $statement->fetch(PDO::FETCH_ASSOC);
 
@@ -25,8 +25,8 @@ if(isset($_POST['delete-account'])) {
 	}
 
 	if(password_verify($password, $user['password'])) {
-		$statement = $pdo->prepare('DELETE FROM users WHERE username = :username');
-		$statement->bindParam(':username', $username, PDO::PARAM_STR);
+		$statement = $pdo->prepare('DELETE FROM users WHERE user_id = :user_id');
+		$statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 		$statement->execute();
 		unset($_SESSION['logedin']);
 	};
