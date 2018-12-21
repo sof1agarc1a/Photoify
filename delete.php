@@ -8,19 +8,27 @@ require __DIR__.'/views/header.php'; ?>
 	}
 </style>
 <article>
-
-
 	<p> Edit profile </p>
 
-	<form action="app/users/update/update_profile_pic.php" method="post">
+	<form action="app/users/update/update_username.php" method="post">
+		<div class="form-group">
+			<label for="username">Change username</label>
+			<input class="form-control" type="text" name="new-username" value="<?= $_SESSION['logedin']['username'] ?>">
+		</div>
+		<button type="submit" name="update-username" class="btn btn-primary">Edit</button>
+	</form>
+
+	<form action="app/users/update/update_profile_pic.php" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="profile-pic">Change picture</label>
-      <input class="form-control" type="text" name="new-profile-pic" value="<?= $_SESSION['logedin']['profile_pic'] ?>">
+      <input class="form-control" type="file" name="new-profile-pic" required>
+			<img width="100px" height="100px" src="<?= $_SESSION['logedin']['profile_pic'] ?>" alt="profile picture">
     </div>
     <button type="submit" name="update-profile-pic" class="btn btn-primary">Edit</button>
 	</form>
 
 	<?php
+	// do foreach
 	if(isset($_SESSION['invalid-email'])):
 		echo $_SESSION['invalid-email'];
 		unset($_SESSION['invalid-email']);
@@ -42,20 +50,20 @@ require __DIR__.'/views/header.php'; ?>
 	endif;
 	?>
 
-	<form action="app/users/update/update_email.php" method="post">
-		<div class="form-group">
-			<label for="email">Change email</label>
-			<input class="form-control" type="email" name="new-email" value="<?= $_SESSION['logedin']['email'] ?>">
-		</div>
-		<button type="submit" name="update-email" class="btn btn-primary">Edit</button>
-	</form>
-
 	<form action="app/users/update/update_bio.php" method="post">
 		<div class="form-group">
 			<label for="bio">Edit biography</label>
 			<input class="form-control" type="text" name="new-bio" value="<?= $_SESSION['logedin']['profile_bio'] ?>">
 		</div>
 		<button type="submit" name="update-bio" class="btn btn-primary">Edit</button>
+	</form>
+
+	<form action="app/users/update/update_email.php" method="post">
+		<div class="form-group">
+			<label for="email">Change email</label>
+			<input class="form-control" type="email" name="new-email" value="<?= $_SESSION['logedin']['email'] ?>">
+		</div>
+		<button type="submit" name="update-email" class="btn btn-primary">Edit</button>
 	</form>
 
 	<?php

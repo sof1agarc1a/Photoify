@@ -3,33 +3,13 @@ declare(strict_types=1);
 require __DIR__.'/../../autoload.php';
 
 if(isset($_POST['update-bio'])) {
+	$bio = filter_var($_POST['new-bio'], FILTER_SANITIZE_STRING);
+	$user_id = $_SESSION['logedin']['user_id'];
 
-	// $password = $_POST['password'];
-	// $username = $_SESSION['logedin']['username'];
-	//
-	// $statement = $pdo->prepare('SELECT * FROM users WHERE username = :username');
-  // $statement->bindParam(':username', $username, PDO::PARAM_STR);
-  // $statement->execute();
-  // $user = $statement->fetch(PDO::FETCH_ASSOC);
-	//
-	//
-	// // Display login errors
-	// if(empty($password)) {
-	// 	$_SESSION['empty'] = "Please fill in the password!";
-	// 	redirect('/delete.php');
-	// }
-	//
-	// if(!password_verify($password, $user['password'])) {
-	// 	$_SESSION['wrong'] = "The password is wrong!";
-	// 	redirect('/delete.php');
-	// }
-	//
-	// if(password_verify($password, $user['password'])) {
-	// 	$statement = $pdo->prepare('DELETE FROM users WHERE username = :username');
-	// 	$statement->bindParam(':username', $username, PDO::PARAM_STR);
-	// 	$statement->execute();
-	// 	unset($_SESSION['logedin']);
-	// };
+	$statement = $pdo->prepare('UPDATE users SET profile_bio = :profile_bio WHERE user_id = :user_id');
+	$statement->bindParam(':profile_bio', $bio, PDO::PARAM_STR);
+	$statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+	$statement->execute();
+	$_SESSION['logedin']['profile_bio'] = $bio;
 }
-
-redirect('/');
+redirect('/delete.php');
