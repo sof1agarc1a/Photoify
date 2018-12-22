@@ -8,55 +8,29 @@ if(isset($_POST['update-profile-pic'])) {
 
 	if($profilePic['size'] > 2500000) {
 		$_SESSION['pic-size'] = "The uploaded file exceeded the file size limit.";
-		redirect('/delete.php')
-	}	elseif($profilePic['type'] !== 'image/png', 'image/jpeg', 'image/gif') {
-			$_SESSION['pic-type'] = "The image file type is not allowed.";
-			redirect('/delete.php')
+		redirect('/delete.php');
 	}
 
-	//select profile db
-	//default image here
-
-	$profileName= $profilePic['name'];
-	$filename = "profile_pic_$user_id.$profileName";
-	$dir = __DIR__.'/../../../assets/images/uploads/profile_pic/'.$filename;
-	move_uploaded_file($profilePic['tmp_name'], $dir);
-
-	//UPDATE profile db
-
-
+	if(!in_array($profilePic['type'], ['image/jpeg', 'image/png', 'image/gif'])) {
+		$_SESSION['pic-type'] = "The image file type is not allowed.";
+		redirect('/delete.php');
 	}
 
+	$statement = $pdo->prepare("SELECT profile_pic FROM users WHERE user_id = :user_id;");
+	$statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+	$statement->execute();
+	$currentPics = $statement->fetch(PDO::FETCH_ASSOC);
+	$currentPic = $currentPics['profile_pic'];
+	$profileName = $profilePic['name'];
+	$dir = __DIR__.'/../../../assets/images/uploads/profile_pic/';
+	$filename = "$user_id.profile_pic_$profileName";
+	move_uploaded_file($profilePic['tmp_name'], $dir.$filename);
 
-	//
-	// $profilePic = filter_var($_POST['new-profile-pic'], FILTER_SANITIZE_STRING);
-	// $user_id = $_SESSION['logedin']['user_id'];
-	//
-	// if(!filter_var($profilePic, FILTER_VALIDATE_EMAIL)) {
-	// 	$_SESSION['invalid-email'] = "Please provide a valid email!";
-	// 	redirect('/delete.php');
-	// }
-	//
-	// if($profilePic === $_SESSION['logedin']['email']) {
-	// 	$_SESSION['same-email'] = "You already have this mail.";
-	// 	redirect('/delete.php');
-	// }
-	//
-	// $statement = $pdo->prepare('SELECT email FROM users WHERE email = :email;');
-	// $statement->bindParam(':email', $profilePic, PDO::PARAM_STR);
-	// $statement->execute();
-	// $existingEmail = $statement->fetch(PDO::FETCH_ASSOC);
-	//
-	// if($existingEmail['email'] === $profilePic) {
-	// 	$_SESSION['taken-email'] = "This email is already registered.";
-	// 	redirect('/delete.php');
-	// }
-	//
-	// $statement = $pdo->prepare('UPDATE users SET email = :email WHERE user_id = :user_id');
-	// $statement->bindParam(':email', $profilePic, PDO::PARAM_STR);
-	// $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-	// $statement->execute();
-	// $_SESSION['updated-email'] = "Your email has been updated!";
-	// $_SESSION['logedin']['email'] = $profilePic;
+	$_SESSION['logedin']['profile_pic'] = $filename;
+
+	$statement = $pdo->prepare("UPDATE users SET profile_pic = :filename WHERE user_id = :user_id;");
+	$statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+	$statement->bindParam(':filename', $filename, PDO::PARAM_STR);
+	$statement->execute();
 }
 redirect('/delete.php');

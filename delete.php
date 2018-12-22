@@ -21,11 +21,25 @@ require __DIR__.'/views/header.php'; ?>
 	<form action="app/users/update/update_profile_pic.php" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="profile-pic">Change picture</label>
-      <input class="form-control" type="file" name="new-profile-pic" required>
-			<img width="100px" height="100px" src="<?= $_SESSION['logedin']['profile_pic'] ?>" alt="profile picture">
+      <input class="form-control" type="file" accept=".gif, .png, .jpg, .jpeg" name="new-profile-pic" required>
+			<img width="100px" height="100px" src="<?= '/assets/images/uploads/profile_pic/'.$_SESSION['logedin']['profile_pic'] ?>" alt="profile picture">
     </div>
     <button type="submit" name="update-profile-pic" class="btn btn-primary">Edit</button>
 	</form>
+
+
+	<?php
+	if(isset($_SESSION['pic-type'])):
+		echo $_SESSION['pic-type'];
+		unset($_SESSION['pic-type']);
+	endif;
+
+	if(isset($_SESSION['pic-size'])):
+		echo $_SESSION['pic-size'];
+		unset($_SESSION['pic-size']);
+	endif;
+
+	?>
 
 	<?php
 	// do foreach
