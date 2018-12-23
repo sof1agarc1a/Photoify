@@ -21,8 +21,14 @@ if(isset($_POST['update-profile-pic'])) {
 	$statement->execute();
 	$currentPics = $statement->fetch(PDO::FETCH_ASSOC);
 	$currentPic = $currentPics['profile_pic'];
-	$profileName = $profilePic['name'];
+
 	$dir = __DIR__.'/../../../assets/images/uploads/profile_pic/';
+
+	if(file_exists($dir.$currentPic) && $dir.$currentPic != 'default_picture.jpg') {
+		unlink($dir.$currentPic);
+	}
+
+	$profileName = $profilePic['name'];
 	$filename = "$user_id.profile_pic_$profileName";
 	move_uploaded_file($profilePic['tmp_name'], $dir.$filename);
 

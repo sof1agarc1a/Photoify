@@ -27,6 +27,10 @@ require __DIR__.'/views/header.php'; ?>
     <button type="submit" name="update-profile-pic" class="btn btn-primary">Edit</button>
 	</form>
 
+	<form action="app/users/update/delete_profile_pic.php" method="post">
+		<button type="submit" name="delete-profile-pic" class="btn btn-primary">Delete profile picture</button>
+	</form>
+
 
 	<?php
 	if(isset($_SESSION['pic-type'])):
@@ -39,9 +43,21 @@ require __DIR__.'/views/header.php'; ?>
 		unset($_SESSION['pic-size']);
 	endif;
 
-	?>
+	if(isset($_SESSION['same-username'])):
+		echo $_SESSION['same-username'];
+		unset($_SESSION['same-username']);
+	endif;
 
-	<?php
+	if(isset($_SESSION['taken-username'])):
+		echo $_SESSION['taken-username'];
+		unset($_SESSION['taken-username']);
+	endif;
+
+	if(isset($_SESSION['uploaded-username'])):
+		echo $_SESSION['uploaded-username'];
+		unset($_SESSION['uploaded-username']);
+	endif;
+
 	// do foreach
 	if(isset($_SESSION['invalid-email'])):
 		echo $_SESSION['invalid-email'];
