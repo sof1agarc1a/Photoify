@@ -1,6 +1,7 @@
-<?php require __DIR__.'/views/header.php'; ?>
-
 <?php
+declare(strict_types=1);
+require __DIR__.'/views/header.php';
+
 // If there is no user logged in redirect to the login page.
 if(!isset($_SESSION['logedin'])):
   redirect('/login.php');
@@ -13,6 +14,6 @@ endif; ?>
   endif; ?>
 
   <p>This is the home page.</p>
-</article>
+
 
 <?php require __DIR__.'/views/footer.php'; ?>

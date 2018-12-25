@@ -11,7 +11,7 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="/about.php">Add post</a>
+      <a class="nav-link" href="/posts.php">Add post</a>
     </li>
 
     <li class="nav-item">

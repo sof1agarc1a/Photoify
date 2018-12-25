@@ -11,6 +11,12 @@ if(isset($_POST['delete-profile-pic'])) {
 	$currentPics = $statement->fetch(PDO::FETCH_ASSOC);
 	$currentPic = $currentPics['profile_pic'];
 
+	$dir = __DIR__.'/../../../assets/images/uploads/profile_pic/';
+
+	if(file_exists($dir.$currentPic) && $dir.$currentPic != 'default_picture.jpg') {
+		unlink($dir.$currentPic);
+	}
+
 	$defaultPic = "default_picture.jpg";
 
 	$_SESSION['logedin']['profile_pic'] = $defaultPic;

@@ -27,12 +27,14 @@ require __DIR__.'/views/header.php'; ?>
     <button type="submit" name="update-profile-pic" class="btn btn-primary">Edit</button>
 	</form>
 
+	<?php
+	if($_SESSION['logedin']['profile_pic'] != 'default_picture.jpg'): ?>
 	<form action="app/users/update/delete_profile_pic.php" method="post">
 		<button type="submit" name="delete-profile-pic" class="btn btn-primary">Delete profile picture</button>
 	</form>
+	<?php endif;
 
 
-	<?php
 	if(isset($_SESSION['pic-type'])):
 		echo $_SESSION['pic-type'];
 		unset($_SESSION['pic-type']);
@@ -121,10 +123,6 @@ require __DIR__.'/views/header.php'; ?>
 		</div>
 		<button type="submit" name="update-password" class="btn btn-primary">Edit</button>
 	</form>
-
-
-
-
 
   <form action="app/users/delete.php" method="post">
       <p> Delete your account </p>

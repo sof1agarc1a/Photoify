@@ -45,20 +45,54 @@ if (isset($_POST['create-account'])) {
 	$statement->bindParam(':password', $passwordHash, PDO::PARAM_STR);
 	$statement->execute();
 
-
 	$statement = $pdo->prepare('SELECT * FROM users WHERE username = :username');
   $statement->bindParam(':username', $username, PDO::PARAM_STR);
   $statement->execute();
   $user = $statement->fetch(PDO::FETCH_ASSOC);
 
+	// $statement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id');
+  // $statement->bindParam(':user_id', $user['user_id'], PDO::PARAM_STR);
+  // $statement->execute();
+  // $post = $statement->fetch(PDO::FETCH_ASSOC);
+	//
+	// $statement = $pdo->prepare('SELECT * FROM likes WHERE user_id = :user_id');
+  // $statement->bindParam(':user_id', $user['user_id'], PDO::PARAM_INT);
+  // $statement->execute();
+  // $likes = $statement->fetch(PDO::FETCH_ASSOC);
+	//
+	// $statement = $pdo->prepare('SELECT * FROM comments WHERE user_id = :user_id');
+  // $statement->bindParam(':user_id', $user['user_id'], PDO::PARAM_INT);
+  // $statement->execute();
+  // $comment = $statement->fetch(PDO::FETCH_ASSOC);
+
 	// If the user successfully created account login the new account directly
 	$_SESSION['logedin'] = [
-			'user_id' => $user['user_id'],
-			'fullname' => $user['full_name'],
-			'email' => $user['email'],
-			'username' => $user['username'],
-			'profile_pic' => $user['profile_pic'],
-			'profile_bio' => $user['profile_bio'],
+		'user_id' => $user['user_id'],
+		'fullname' => $user['full_name'],
+		'email' => $user['email'],
+		'username' => $user['username'],
+		'profile_pic' => $user['profile_pic'],
+		'profile_bio' => $user['profile_bio'],
 	];
+
+	// $_SESSION['store'] = [
+	// 	'post_id' => $post['post_id'],
+	// 	'post_pic' => $post['post_pic'],
+	// 	'description' => $post['description'],
+	// 	'user_id' => $post['user_id'],
+	// 	'post_created_at' => $post['post_created_at'],
+	//
+	// 	'like_id' => $likes['id'],
+	// 	'likes_post_id' => $likes['post_id'],
+	// 	'likes' => $likes['likes'],
+	// 	'dislikes' => $likes['dislikes'],
+	//
+	// 	'comment_id' => $comment['id'],
+	// 	'comment_user_id' => $comment['user_id'],
+	// 	'comment_post_id' => $comment['post_id'],
+	// 	'content' => $comment['content'],
+	// 	'comment_created_at' => $comment['created_at'],
+	// ];
+
 }
 redirect('/');

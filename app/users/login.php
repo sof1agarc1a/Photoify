@@ -33,6 +33,34 @@ if(isset($_POST['username'], $_POST['password'])) {
 				'profile_pic' => $user['profile_pic'],
 				'profile_bio' => $user['profile_bio'],
 		];
+
+		$user_id = $_SESSION['logedin']['user_id'];
+
+		$statement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id;');
+	  $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+	  $statement->execute();
+	  $post = $statement->fetch(PDO::FETCH_ASSOC);
+
+		// $_SESSION['store'] = [
+		// 	'post_id' => $post['post_id'],
+		// 	'post_pic' => $post['post_pic'],
+		// 	'description' => $post['description'],
+		// 	'user_id' => $post['user_id'],
+		// 	'post_created_at' => $post['post_created_at'],
+		//
+		// 	'like_id' => $likes['id'],
+		// 	'likes_post_id' => $likes['post_id'],
+		// 	'likes' => $likes['likes'],
+		// 	'dislikes' => $likes['dislikes'],
+		//
+		// 	'comment_id' => $comment['id'],
+		// 	'comment_user_id' => $comment['user_id'],
+		// 	'comment_post_id' => $comment['post_id'],
+		// 	'content' => $comment['content'],
+		// 	'comment_created_at' => $comment['created_at'],
+		//
+		//
+		// ];
   };
 }
 redirect('/');
