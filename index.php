@@ -31,7 +31,6 @@ endif; ?>
 				echo "<br>".$post['post_created_at']."<br>";
 				echo $post['description']."<br>";
 				echo $post['id']."<br>";
-
 				?>
 				<form action="/app/posts/update.php" method="post">
 					<div>
@@ -44,7 +43,7 @@ endif; ?>
 				<form action="/app/posts/delete.php" method="post">
 					<div>
 						<label for=""> Delete post </label>
-						<!-- <input type="text" name="delete-description" required> -->
+						<input type="hidden" name="id" value="<?= $post['id']; ?>" >
 						<button type="submit" name="post-delete"> Delete </button>
 					</div>
 				</form> <?php

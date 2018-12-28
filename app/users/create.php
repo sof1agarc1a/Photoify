@@ -75,6 +75,14 @@ if (isset($_POST['create-account'])) {
 		'profile_bio' => $user['profile_bio'],
 	];
 
+	$user = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id;');
+	$user->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+	$user->execute();
+	$posts = $user->fetchAll(PDO::FETCH_ASSOC);
+
+	$_SESSION['posts'] = $posts;
+
+
 	// $_SESSION['store'] = [
 	// 	'post_id' => $post['post_id'],
 	// 	'post_pic' => $post['post_pic'],
