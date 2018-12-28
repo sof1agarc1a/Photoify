@@ -21,11 +21,11 @@ if (isset($_POST['create-account'])) {
 	}
 
 	// Validate if this account already exists
-	$statement = $pdo->prepare('SELECT username, email FROM users WHERE username = :username OR email = :email;');
-	$statement->bindParam(':username', $username, PDO::PARAM_STR);
-	$statement->bindParam(':email', $email, PDO::PARAM_STR);
-	$statement->execute();
-	$existingAccount = $statement->fetch(PDO::FETCH_ASSOC);
+	$user = $pdo->prepare('SELECT username, email FROM users WHERE username = :username OR email = :email;');
+	$user->bindParam(':username', $username, PDO::PARAM_STR);
+	$user->bindParam(':email', $email, PDO::PARAM_STR);
+	$user->execute();
+	$existingAccount = $user->fetch(PDO::FETCH_ASSOC);
 
 	if($existingAccount['username'] === $username) {
 		$_SESSION['username-taken'] = "This username is already taken, please try another one.";
@@ -38,17 +38,17 @@ if (isset($_POST['create-account'])) {
 	}
 
 	// Insert new account into the database
-  $statement = $pdo->prepare("INSERT INTO users(full_name, username, email, password) VALUES(:fullname, :username, :email, :password);");
-	$statement->bindParam(':fullname', $fullname, PDO::PARAM_STR);
-	$statement->bindParam(':username', $username, PDO::PARAM_STR);
-	$statement->bindParam(':email', $email, PDO::PARAM_STR);
-	$statement->bindParam(':password', $passwordHash, PDO::PARAM_STR);
-	$statement->execute();
+  $user = $pdo->prepare("INSERT INTO users(full_name, username, email, password) VALUES(:fullname, :username, :email, :password);");
+	$user->bindParam(':fullname', $fullname, PDO::PARAM_STR);
+	$user->bindParam(':username', $username, PDO::PARAM_STR);
+	$user->bindParam(':email', $email, PDO::PARAM_STR);
+	$user->bindParam(':password', $passwordHash, PDO::PARAM_STR);
+	$user->execute();
 
-	$statement = $pdo->prepare('SELECT * FROM users WHERE username = :username');
-  $statement->bindParam(':username', $username, PDO::PARAM_STR);
-  $statement->execute();
-  $user = $statement->fetch(PDO::FETCH_ASSOC);
+	$user = $pdo->prepare('SELECT * FROM users WHERE username = :username');
+  $user->bindParam(':username', $username, PDO::PARAM_STR);
+  $user->execute();
+  $user = $user->fetch(PDO::FETCH_ASSOC);
 
 	// $statement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id');
   // $statement->bindParam(':user_id', $user['user_id'], PDO::PARAM_STR);

@@ -12,12 +12,4 @@
 	</div>
 </form>
 
-<div>
-	<?php if(isset($_SESSION['store']['post_pic'])): ?>
-		<img alt="#" src="<?= '/assets/images/uploads/post_pic/'.$_SESSION['store']['post_pic'];?>">
-		<?php
-		echo $_SESSION['store']['description'];
-	endif; ?>
-</div>
-
 <?php require __DIR__.'/views/footer.php';?>
