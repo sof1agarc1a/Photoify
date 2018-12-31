@@ -13,9 +13,7 @@ if(isset($_POST['delete-profile-pic'])) {
 
 	$dir = __DIR__.'/../../../assets/images/uploads/profile_pic/';
 
-	if(file_exists($dir.$currentPic) && $dir.$currentPic != 'default_picture.jpg') {
-		unlink($dir.$currentPic);
-	}
+	unlink($dir.$currentPic);
 
 	$defaultPic = "default_picture.jpg";
 

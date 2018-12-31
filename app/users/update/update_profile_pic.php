@@ -24,7 +24,7 @@ if(isset($_POST['update-profile-pic'])) {
 
 	$dir = __DIR__.'/../../../assets/images/uploads/profile_pic/';
 
-	if(file_exists($dir.$currentPic) && $dir.$currentPic != 'default_picture.jpg') {
+	if($currentPic !== 'default_picture.jpg') {
 		unlink($dir.$currentPic);
 	}
 
