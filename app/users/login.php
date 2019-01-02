@@ -36,15 +36,12 @@ if(isset($_POST['username'], $_POST['password'])) {
 
 		$user_id = $_SESSION['logedin']['user_id'];
 
-
 		$user = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id;');
 	  $user->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 	  $user->execute();
 	  $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 
 		$_SESSION['posts'] = $posts;
-
-
   };
 }
 redirect('/');

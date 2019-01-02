@@ -30,7 +30,15 @@ endif; ?>
 				<?php
 				echo "<br>".$post['post_created_at']."<br>";
 				echo $post['description']."<br>";
-				echo $post['id']."<br>";
+				// echo $post['id']."<br>";
+
+				if($post['likes'] != 0):
+					echo "likes: ".$post['likes']."<br>";
+				endif;
+
+				if($post['dislikes'] != 0):
+					echo "dislikes: ".$post['dislikes']."<br>";
+				endif;
 				?>
 				<form action="/app/posts/delete.php" method="post">
 					<div>
@@ -46,6 +54,15 @@ endif; ?>
 						<input type="text" name="new-description" required>
 						<input type="hidden" name="id" value="<?= $post['id']; ?>" >
 						<button type="submit" name="description-update"> Update description </button>
+					</div>
+				</form>
+
+				<form action="/app/posts/likes.php" method="post">
+					<div>
+						<label for=""> Like </label>
+						<input type="hidden" name="id" value="<?= $post['id']; ?>" >
+						<button type="submit" name="liked"> Like </button>
+						<button type="submit" name="disliked"> Dislike </button>
 					</div>
 				</form> <?php
 			endforeach;
