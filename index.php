@@ -32,13 +32,6 @@ endif; ?>
 				echo $post['description']."<br>";
 				// echo $post['id']."<br>";
 
-				if($post['likes'] != 0):
-					echo "likes: ".$post['likes']."<br>";
-				endif;
-
-				if($post['dislikes'] != 0):
-					echo "dislikes: ".$post['dislikes']."<br>";
-				endif;
 				?>
 				<form action="/app/posts/delete.php" method="post">
 					<div>
@@ -57,17 +50,22 @@ endif; ?>
 					</div>
 				</form>
 
-				<form action="/app/posts/likes.php" method="post">
+				<form class="form" method="post" >
 					<div>
 						<label for=""> Like </label>
-						<input type="hidden" name="id" value="<?= $post['id']; ?>" >
-						<button type="submit" name="liked"> Like </button>
-						<button type="submit" name="disliked"> Dislike </button>
+						<input type="hidden" name="id" value="<?= $post['id']; ?>">
+						<button type="submit"> Like </button>
+
 					</div>
-				</form> <?php
+				</form>
+
+					<p> <?= $post['likes']. " likes"; ?> </p> <?php
+
 			endforeach;
 		endif;
 	 ?>
 	</div>
+
+	<script type="text/javascript" src="app/posts/likes.js"> </script>
 
 <?php require __DIR__.'/views/footer.php'; ?>
