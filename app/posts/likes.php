@@ -57,48 +57,10 @@ if(isset($_POST['id'])) {
 	echo $likes;
 
 
+	$user = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id;');
+	$user->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+	$user->execute();
+	$posts = $user->fetchAll(PDO::FETCH_ASSOC);
 
-	// $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-	// $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-	// $statement->execute();
-	//
-	// $statement = $pdo->query("SELECT COUNT(*) AS likes FROM likes WHERE post_id = '$post_id';");
-	//
-	//
-	// $likes = $statement->fetchAll(PDO::FETCH_ASSOC);
-	//
-	// $likes = json_encode($likes);
-	// header('Content-Type: application/json');
-	// echo $likes;
-
-
-
-
-	// $_SESSION['posts'] = $likes;
-
-	//
-	// //Recieved request
-	// $request = json_decode(file_get_contents('likes.php'));
-	//
-	// //Fetch likes
-	// $fetch_query = 'SELECT likes FROM posts WHERE posts.id = :id';
-	// $params = [
-	//     ':id' => $request->id,
-	// ];
-	//
-	// $response = $database->getData($fetch_query, $params);
-	//
-	// //Update
-	// $insert_query = 'UPDATE posts SET likes = :likes WHERE posts.id = :id';
-	// $params = [
-	//     ':likes' => $response[0]['likes'] + $request->likes,
-	//     ':id' => $request->id,
-	// ];
-	//
-	// $database->setData($insert_query, $params);
-
-
-
+	$_SESSION['posts'] = $posts;
 }
-
-// redirect('/');

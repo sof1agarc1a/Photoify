@@ -2,10 +2,10 @@
 declare(strict_types=1);
 
 
-function getPost($posts) {
-
-
-
-
-
-}
+// function getPost($posts) {
+//
+//
+//
+//
+//
+// }

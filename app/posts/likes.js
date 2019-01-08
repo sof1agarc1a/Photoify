@@ -34,30 +34,3 @@ forms.forEach(form => {
 // };
 
 // #like-count-${this.dataset.id}
-
-
-// fetch('/api')
-//   .then(response => response.json())
-//   .then(vampires => {
-//     vampires.forEach(vampire => addVampire(vampire.name));
-//   });
-
-// When the page loads we fetch all vampires from the database and list them in
-// our unordered list.
-
-	// 'use strict';
-	//
-	// const form = document.querySelector('form');
-	//
-	// form.addEventListener('submit', event => {
-	// 	event.preventDefault();
-	//
-	// 	const formData = new FormData(form);
-	//
-	// 	fetch(`likes.php`, {
-	// 		method: 'POST',
-	// 		body: formData
-	// 	})
-	// 	.then(response => response.json())
-	// 	.then(json => console.dir(json[0].likes));
-	// });

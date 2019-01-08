@@ -60,7 +60,6 @@ endif; ?>
 				</form>
 
 					<p> <?= $post['likes']. " likes"; ?> </p> <?php
-
 			endforeach;
 		endif;
 	 ?>

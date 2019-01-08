@@ -19,6 +19,10 @@ if(isset($_POST['post-delete'])) {
 	$user->bindParam(':id', $post_id, PDO::PARAM_INT);
 	$user->execute();
 
+	$user = $pdo->prepare('DELETE FROM likes WHERE post_id = :id');
+	$user->bindParam(':id', $post_id, PDO::PARAM_INT);
+	$user->execute();
+
 	$dir = __DIR__.'/../../assets/images/uploads/post_pic/';
 
 	if(file_exists($dir.$postPicName)) {
