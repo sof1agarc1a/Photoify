@@ -30,7 +30,6 @@ endif; ?>
 				<?php
 				echo "<br>".$post['post_created_at']."<br>";
 				echo $post['description']."<br>";
-				// echo $post['id']."<br>";
 
 				?>
 				<form action="/app/posts/delete.php" method="post">
@@ -50,7 +49,7 @@ endif; ?>
 					</div>
 				</form>
 
-				<form class="form" method="post" >
+				<form class="likes" method="post" >
 					<div>
 						<label for=""> Like </label>
 						<input type="hidden" name="id" value="<?= $post['id']; ?>">
@@ -59,12 +58,31 @@ endif; ?>
 					</div>
 				</form>
 
-					<p> <?= $post['likes']. " likes"; ?> </p> <?php
+				<p> <?= $post['likes']. " likes"; ?> </p>
+
+				<form class="comments" method="post">
+					<div>
+						<label for=""> <?= $_SESSION['logedin']['username']; ?> </label>
+						<input type="hidden" name="id" value="<?= $post['id']; ?>">
+						<input type="text" name="new-comment" placeholder="Add a comment... " required>
+						<button type="submit"> Public </button>
+
+					</div>
+				</form>
+
+				<p>  </p>
+
+				<!-- <p> <?= $post['likes']. " likes"; ?> </p> -->
+
+					<!-- <p> <?= $_SESSION['logedin']['username']; ?> </p> -->
+
+					<?php
 			endforeach;
 		endif;
 	 ?>
 	</div>
 
 	<script type="text/javascript" src="app/posts/likes.js"> </script>
+	<script type="text/javascript" src="app/posts/comments.js"> </script>
 
 <?php require __DIR__.'/views/footer.php'; ?>

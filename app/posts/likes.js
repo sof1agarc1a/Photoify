@@ -1,6 +1,6 @@
 'use strict';
 
-const forms = document.querySelectorAll('.form');
+const formsLikes = document.querySelectorAll('.likes');
 
 
 // const showLikes = (likes) => {
@@ -11,16 +11,16 @@ const forms = document.querySelectorAll('.form');
 // };
 
 // if(json[0].likes != 0) {
-forms.forEach(form => {
+formsLikes.forEach(form => {
 	form.addEventListener('submit', (event) => {
 
 	  event.preventDefault();
 
-	  const formData = new FormData(form);
+	  const formLikes = new FormData(form);
 
 	  fetch('app/posts/likes.php', {
 	      method: 'POST',
-	      body: formData
+	      body: formLikes
 	    })
 	    .then(response => response.json())
 	    .then(json => form.nextElementSibling.textContent = json[0].likes + " likes")

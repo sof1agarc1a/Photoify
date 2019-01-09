@@ -53,7 +53,6 @@ if(isset($_POST['id'])) {
 
 	$likes = json_encode($likes);
 	header('Content-Type: application/json');
-	// $_SESSION['posts'] = $likes;
 	echo $likes;
 
 
