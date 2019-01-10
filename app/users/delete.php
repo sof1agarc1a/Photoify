@@ -32,12 +32,32 @@ if(isset($_POST['delete-account'])) {
 		$currentPics = $statement->fetch(PDO::FETCH_ASSOC);
 
 		$currentPic = $currentPics['profile_pic'];
-		$dir = __DIR__.'/../../assets/images/uploads/profile_pic/';
-		if(!in_array($dir.$currentPic, ['default_picture.jpg'])) {
-			unlink($dir.$currentPic);
-		};
+		$profileDir = __DIR__.'/../../assets/images/uploads/profile_pic/';
+
+		if($currentPic !== 'default_picture.jpg') {
+			unlink($profileDir.$currentPic);
+		}
+
+		$statement = $pdo->prepare('SELECT post_pic FROM posts WHERE user_id = :user_id;');
+		$statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+		$statement->execute();
+		$currentPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+		$postDir = __DIR__.'/../../assets/images/uploads/post_pic/';
+
+		foreach($currentPosts as $currentPost){
+			unlink($postDir.$currentPost['post_pic']);
+		}
+
+		$statement = $pdo->prepare('DELETE FROM posts WHERE user_id = :user_id;');
+		$statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+		$statement->execute();
 
 		$statement = $pdo->prepare('DELETE FROM users WHERE user_id = :user_id;');
+		$statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+		$statement->execute();
+
+		$statement = $pdo->prepare('DELETE FROM comments WHERE user_id = :user_id;');
 		$statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 		$statement->execute();
 

@@ -19,18 +19,15 @@ if(isset($_POST['new-comment'])) {
 
 	$statement = $pdo->query("SELECT * FROM comments WHERE post_id = '$post_id';");
 
+
 	$comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-	$comments = json_encode($comments);
+  $statement->execute();
+
+	$comments = json_encode(end($comments));
 	header('Content-Type: application/json');
-	// $_SESSION['posts'] = $likes;
 	echo $comments;
 
-
-	// $user = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id;');
-	// $user->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-	// $user->execute();
-	// $posts = $user->fetchAll(PDO::FETCH_ASSOC);
-	//
-	// $_SESSION['posts'] = $posts;
 }
+
+// redirect('/');

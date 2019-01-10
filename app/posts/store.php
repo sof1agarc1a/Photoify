@@ -33,13 +33,5 @@ if(isset($_POST['post-upload'])) {
 	$user->bindParam(':username', $username, PDO::PARAM_STR);
 	$user->execute();
 
-
-	$user = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id;');
-  $user->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-  $user->execute();
-  $posts = $user->fetchAll(PDO::FETCH_ASSOC);
-
-	$_SESSION['posts'] = $posts;
-
 }
 redirect('/');

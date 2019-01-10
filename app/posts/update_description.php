@@ -12,11 +12,5 @@ if(isset($_POST['description-update'])) {
 	$statement->bindParam(':id', $post_id, PDO::PARAM_INT);
 	$statement->execute();
 
-	$user = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id;');
-  $user->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-  $user->execute();
-  $posts = $user->fetchAll(PDO::FETCH_ASSOC);
-
-	$_SESSION['posts'] = $posts;
 }
 redirect('/');

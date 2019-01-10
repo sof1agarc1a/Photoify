@@ -28,14 +28,6 @@ if(isset($_POST['post-delete'])) {
 	if(file_exists($dir.$postPicName)) {
 		unlink($dir.$postPicName);
 	}
-
-	$user = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id;');
-	$user->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-	$user->execute();
-	$posts = $user->fetchAll(PDO::FETCH_ASSOC);
-
-	$_SESSION['posts'] = $posts;
-
 }
 
 redirect('/');

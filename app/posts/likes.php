@@ -49,17 +49,8 @@ if(isset($_POST['id'])) {
 
 	$likes = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-
-
 	$likes = json_encode($likes);
 	header('Content-Type: application/json');
 	echo $likes;
 
-
-	$user = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id;');
-	$user->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-	$user->execute();
-	$posts = $user->fetchAll(PDO::FETCH_ASSOC);
-
-	$_SESSION['posts'] = $posts;
 }
