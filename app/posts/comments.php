@@ -29,5 +29,3 @@ if(isset($_POST['new-comment'])) {
 	echo $comments;
 
 }
-
-// redirect('/');

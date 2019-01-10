@@ -56,11 +56,9 @@ endif; ?>
 
 
 				<form class="likes" method="post" >
-					<div>
-						<label for=""> Like </label>
-						<input type="hidden" name="id" value="<?= $post['id']; ?>">
-						<button type="submit"> Like </button>
-					</div>
+					<label for=""> Like </label>
+					<input type="hidden" name="id" value="<?= $post['id']; ?>">
+					<button type="submit"> Like </button>
 				</form>
 
 				<p> <?= $post['likes']. " likes"; ?> </p>
@@ -72,44 +70,30 @@ endif; ?>
 			  $user->execute();
 			  $comments = $user->fetchAll(PDO::FETCH_ASSOC); ?>
 
-				<div class="comments" id="add-comment-<?= $post['id']; ?>"> <?php
-					foreach($comments as $comment): ?>
-						<p> <?= $comment['username'].": ".$comment['content']; ?> </p>
+				<div id="add-comment-<?= $post['id']; ?>">
+					<?php foreach($comments as $comment): ?>
+						<p id="edit-delete-comment-<?= $comment['id']; ?>"> <?= $comment['username'].": ".$comment['content']; ?> </p>
 						<div>
-							<form class="edit-comment" id="edit-comment-<?= $comment['id']; ?>" method="post">
-								<div>
-									<input type="hidden" name="id" value="<?= $post['id']; ?>">
-									<input type="text" name="edit-comment" required>
-									<button type="submit"> Edit </button>
-								</div>
+							<form class="edit-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
+								<input type="hidden" name="comment-id" value="<?= $comment['id']; ?>">
+								<input type="text" name="edit-comment" required>
+								<button type="submit"> Edit </button>
 							</form>
 						</div>
 						<div>
-							<form class="delete-comment" id="delete-comment-<?= $comment['id']; ?>" method="post">
-								<div>
-									<input type="hidden" name="id" value="<?= $post['id']; ?>">
-									<button type="submit"> Delete comment </button>
-								</div>
+							<form class="delete-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
+								<input type="hidden" name="delete-comment-id" value="<?= $comment['id']; ?>">
+								<button type="submit"> Delete comment </button>
 							</form>
 						</div>
-						<?php
-					endforeach; ?>
+					<?php endforeach; ?>
 				</div>
 
-
-
-
-				<!-- <div class="add-comment">
-				</div> -->
-
 				<form class="comments" method="post">
-					<div>
-						<label for=""> <?= $_SESSION['logedin']['username']; ?> </label>
-						<input type="hidden" name="id" value="<?= $post['id']; ?>">
-						<input type="text" name="new-comment" placeholder="Add a comment... " required>
-						<button type="submit"> Public </button>
-
-					</div>
+					<label for=""> <?= $_SESSION['logedin']['username']; ?> </label>
+					<input type="hidden" name="id" value="<?= $post['id']; ?>">
+					<input type="text" name="new-comment" placeholder="Add a comment... " required>
+					<button type="submit"> Public </button>
 				</form>
 				<?php
 			endforeach;
@@ -118,6 +102,8 @@ endif; ?>
 
 	<script type="text/javascript" src="app/posts/likes.js"> </script>
 	<script type="text/javascript" src="app/posts/comments.js"> </script>
+	<script type="text/javascript" src="app/posts/edit_comment.js"> </script>
+	<script type="text/javascript" src="app/posts/delete_comment.js"> </script>
 
 
 
