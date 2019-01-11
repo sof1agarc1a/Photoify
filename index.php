@@ -9,7 +9,6 @@ if(!isset($_SESSION['logedin'])):
 endif; ?>
 
 <article>
-  <h1><?php echo $config['title']; ?></h1>
   <?php if(isset($_SESSION['logedin'])):
 		echo "hi " . $_SESSION['logedin']['username'];
   endif; ?>
