@@ -1,55 +1,62 @@
 <?php
 declare(strict_types=1);
-require __DIR__.'/views/header.php'; ?>
+require __DIR__.'/views/header.php';
+
+// If the user is logged in redirect to the home-page
+if(isset($_SESSION['logedin'])):
+		redirect('/');
+endif;
+?>
 
 <style>
 	nav {
 	  display: none;
 	}
 </style>
+
 <article>
+	<img class="login-img" src="http://www.futurepositivestudio.com/wp-content/uploads/2015/10/BL-Cold-Brew-Instagram-grid-2.jpg">
+
+	<div class="login-bg">
+		<p class="title-nav login-size"><span class="p login-size-p">P</span>hot<i style="font-size: 64px;"class="fas fa-camera-retro"></i>ify</p>
+		<p class="sign-in"> sign up </p> <hr> </hr>
+
+		<p class="alert-message">
+		<?php alert('empty'); ?> </p>
+
   <form action="app/users/create.php" method="post">
+		<div class="form-group">
+			<label for="name">full name</label>
+			<input id="name" type="text" name="full-name" value="Sofia Garcia">
+		</div>
 
-		<?php
-		// If the user is logged in redirect directly to the home-page
-		if(isset($_SESSION['logedin'])):
-				redirect('/');
-		endif;
+		<p class="alert-message">
+		<?php alert('username-taken'); ?> </p>
 
-		// Dislay errors if form isn't correct
-		if(isset($_SESSION['email-taken'])):
-    	echo $_SESSION['email-taken'];
-  		session_destroy();
-  	endif;
+    <div class="form-group">
+      <label for="username">username</label>
+      <input id="username" type="text" name="username" value="sof1agarc1a">
+    </div>
 
-		if(isset($_SESSION['username-taken'])):
-			echo $_SESSION['username-taken'];
-			session_destroy();
-		endif;
-    ?>
+		<p class="alert-message">
+		<?php alert('email-taken');
+		alert('invalid-email'); ?> </p>
 
 		<div class="form-group">
-			<label for="text">Full name</label>
-			<input class="form-control" type="text" name="full-name" value="Sofia Garcia">
-			<small class="form-text text-muted">Full name.</small>
+			<label for="email">email</label>
+			<input id="email" type="email" name="email" value="sofgar0614@gmail.com">
 		</div>
     <div class="form-group">
-      <label for="text">Username</label>
-      <input class="form-control" type="text" name="username" value="sof1agarc1a">
-      <small class="form-text text-muted">Username.</small>
+      <label for="password">password</label>
+      <input id="password" type="password" name="password" value="sofia123">
     </div>
-		<div class="form-group">
-			<label for="email">Email</label>
-			<input class="form-control" type="email" name="email" value="sofgar0614@gmail.com">
-			<small class="form-text text-muted">Please provide the your email address.</small>
+		<div class="button-login">
+    	<button type="submit" name="create-account"><i class="fas fa-user-plus"></i> create account</button>
 		</div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input class="form-control" type="password" name="password" value="sofia123">
-      <small class="form-text text-muted">Please provide the your password (passphrase).</small>
-    </div>
-    <button type="submit" name="create-account" class="btn btn-primary">Create account</button>
-  </form>
+		<div>
+			<p class="create-account"> Already registered? <a class="create-account ca-bold" href="login.php"> Log in. </a> </p>
+		</div>
+	</form>
 </article>
 
 <?php require __DIR__.'/views/footer.php'; ?>

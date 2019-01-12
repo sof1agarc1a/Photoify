@@ -1,7 +1,13 @@
 <?php
 declare(strict_types=1);
-require __DIR__.'/views/header.php'; ?>
+require __DIR__.'/views/header.php';
 
+// If the user is logged in redirect to the home-page
+if(isset($_SESSION['logedin'])):
+	redirect('/');
+endif;
+
+?>
 <style>
 	nav {
 	  display: none;
@@ -9,43 +15,43 @@ require __DIR__.'/views/header.php'; ?>
 </style>
 
 <!-- Login page -->
+
 <article>
-  <h1>Photoify</h1>
+	<img class="login-img" src="http://www.futurepositivestudio.com/wp-content/uploads/2015/10/BL-Cold-Brew-Instagram-grid-2.jpg">
 
-  <?php
-	// If the user is logged in redirect to the home-page
-	if(isset($_SESSION['logedin'])):
-		redirect('/');
-	endif;
+<!-- https://snappygoat.com/o/1f5a390c8aece473fccb23b253940a3b3d0f9373/art-color-abstract-design-colorful-806357.jpg -->
+<!-- https://digitalart.io/storage/artworks/211/Abstract-Digital-Art-Wallpaper.jpeg -->
+<!-- https://hdqwalls.com/wallpapers/eagle-art.jpg -->
 
-	// Error display if login failed
-	if(isset($_SESSION['wrong'])):
-  	echo $_SESSION['wrong'];
-		session_destroy();
-	endif;
+	<div class="login-bg">
+		<p class="title-nav login-size"><span class="p login-size-p">P</span>hot<i style="font-size: 64px;"class="fas fa-camera-retro"></i>ify</p>
 
-	if(isset($_SESSION['empty'])):
-		echo $_SESSION['empty'];
-		session_destroy();
-	endif;
-  ?>
+	<p class="sign-in"> sign in </p>
+	<hr> </hr>
+
+ 	<p class="alert-message">
+	<?php  	//If login failed send a message to user
+	alert('wrong');
+ 	alert('empty');
+	?> </p>
 
   <form action="app/users/login.php" method="post">
     <div class="form-group">
-      <label for="username">Username</label>
-      <input class="form-control" type="text" name="username" value="sof1agarc1a">
-      <small class="form-text text-muted">Please provide the your username.</small>
+      <label for="username"><i class="fas fa-user"></i> username</label>
+      <input id="username" type="text" name="username" value="sof1agarc1a">
     </div>
     <div class="form-group">
-      <label for="password">Password</label>
-      <input class="form-control" type="password" name="password" value="sofia123">
-      <small class="form-text text-muted">Please provide the your password (passphrase).</small>
+      <label for="password"><i class="fas fa-lock"></i> password</label>
+      <input id="password" type="password" name="password" value="sofia123">
     </div>
-		<button type="submit" class="btn btn-primary">Login</button>
-  </form>
+		<div class="button-login">
+			<button type="submit"><i class="fas fa-sign-in-alt"></i> login</button>
+		</div>
+	</form>
   <div>
-    <p> Don't have an account? <a href="create.php"> Sign up. </a> </p>
+    <p class="create-account"> Don't have an account? <a class="create-account ca-bold" href="create.php"> Sign up. </a> </p>
   </div>
+</div>
 
 </article>
 <?php require __DIR__.'/views/footer.php'; ?>

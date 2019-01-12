@@ -3,16 +3,22 @@
 declare(strict_types=1);
 
 if (!function_exists('redirect')) {
-    /**
-     * Redirect the user to given path.
-     *
-     * @param string $path
-     *
-     * @return void
-     */
-    function redirect(string $path)
-    {
-        header("Location: ${path}");
-        exit;
-    }
+  /**
+   * @param string
+   * @return void
+   */
+
+  function redirect(string $path)
+  {
+    header("Location: ${path}");
+    exit;
+  }
+
+	function alert($message)
+	{
+	if(isset($_SESSION[$message])):
+		echo $_SESSION[$message];
+		session_destroy();
+	endif;
+	}
 }

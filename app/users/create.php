@@ -28,7 +28,7 @@ if (isset($_POST['create-account'])) {
 	$existingAccount = $user->fetch(PDO::FETCH_ASSOC);
 
 	if($existingAccount['username'] === $username) {
-		$_SESSION['username-taken'] = "This username is already taken, please try another one.";
+		$_SESSION['username-taken'] = "This username is already taken.";
 		redirect('/create.php');
 	}
 
@@ -59,13 +59,5 @@ if (isset($_POST['create-account'])) {
 		'profile_pic' => $user['profile_pic'],
 		'profile_bio' => $user['profile_bio'],
 	];
-
-	$user = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id;');
-	$user->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-	$user->execute();
-	$posts = $user->fetchAll(PDO::FETCH_ASSOC);
-
-	$_SESSION['posts'] = $posts;
-
 }
 redirect('/');
