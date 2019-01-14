@@ -38,5 +38,15 @@ if(isset($_POST['update-profile-pic'])) {
 	$statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 	$statement->bindParam(':filename', $filename, PDO::PARAM_STR);
 	$statement->execute();
+
+	$statement = $pdo->prepare("UPDATE posts SET profile_pic = :filename WHERE user_id = :user_id;");
+	$statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+	$statement->bindParam(':filename', $filename, PDO::PARAM_STR);
+	$statement->execute();
+
+	$statement = $pdo->prepare("UPDATE comments SET profile_pic = :filename WHERE user_id = :user_id;");
+	$statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+	$statement->bindParam(':filename', $filename, PDO::PARAM_STR);
+	$statement->execute();
 }
 redirect('/delete.php');

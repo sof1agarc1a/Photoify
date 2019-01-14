@@ -19,7 +19,16 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 <!-- <p> MODE: </p> -->
 <article class="margin-top">
 	<div class="logedin-article">
-		<?php	foreach($posts as $post): ?>
+		<?php	foreach($posts as $post):
+
+
+			$date = date_create($post['post_created_at'], timezone_open('UTC'));
+			$timezone = 'Europe/Stockholm';
+			date_timezone_set($date, timezone_open($timezone));
+			date_timezone_get($date);
+
+			?>
+			<div class="post-border">
 			<div class="each-post">
 			<img class="posted-image" src="<?= '/assets/images/uploads/post_pic/'.$post['post_pic']; ?>" alt="post picture">
 
@@ -35,75 +44,108 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 
 				<?php if($post['user_id'] === $user_id): ?>
 					<div class="dots">
-						<div class="dot"> </div>
-						<div class="dot"> </div>
-						<div class="dot"> </div>
+						<div class="dot-holder">
+							<div class="dot"> </div>
+							<div class="dot"> </div>
+							<div class="dot"> </div>
+							<img class="close-icon" src="/assets/images/close-icon.svg">
+						</div>
 					</div>
+
 				<?php endif; ?>
 
-					<p class="time">
-					<?= "<br>".$post['post_created_at']."<br>"; ?>
+				<div class="description-container">
+					<img class="post-user-profile-pic" src="<?= '/assets/images/uploads/profile_pic/'.$post['profile_pic']?>" alt="profile picture">
+					<div>
+						<p class="username-post">
+							<?= $post['username']; ?>
+						</p>
+
+						<?php if($post['user_id'] === $user_id): ?>
+						<!-- <div class=> -->
+							<div class="options-post-form">
+								<div class="both-options">
+									<form action="/app/posts/delete.php" method="post">
+										<input class="options-form" type="hidden" name="id" value="<?= $post['id']; ?>" >
+										<button class="options-form" type="submit" name="post-delete"> Delete post <i class="fas fa-trash-alt"></i></button>
+									</form>
+
+									<form action="/app/posts/update_description.php" method="post">
+										<input class="options-form-input" type="text" name="new-description" value="<?= $post['description']; ?>" required>
+										<button class="options-form" type="submit" name="description-update"> Edit <i class="fas fa-pen"></i></button>
+										<input type="hidden" name="id" value="<?= $post['id']; ?>" >
+									</form>
+								</div>
+							</div>
+						<?php endif; ?>
+
+
+						 <p class="time-post">
+							<?= date_format($date, 'H:i d M Y'); ?>
+						</p>
+					</div>
+				</div>
+
+				<div class="description-comment">
+					<p> <hr class="description-line">
+						<?= $post['description']; ?>
 					</p>
-
-					<div class="description-container">
-					<?php
-					echo "<br>".$post['username']."<br>";
-					// echo "<br>".$post['profile_pic']."<br>";
-					echo "<br>".$post['description']."<br>";
-					echo "<br>".$post['post_created_at']."<br>";
-
-					?>
 				</div>
-					<?php if($post['user_id'] === $user_id): ?>
-
-			<form class="" action="/app/posts/delete.php" method="post">
-				<div>
-					<label for=""> Delete post </label>
-					<input type="hidden" name="id" value="<?= $post['id']; ?>" >
-					<button type="submit" name="post-delete"><i class="fas fa-trash-alt"></i></button>
-				</div>
-			</form>
-
-			<form action="/app/posts/update_description.php" method="post">
-				<div>
-					<label for=""> Edit description </label>
-					<input type="text" name="new-description" required>
-					<input type="hidden" name="id" value="<?= $post['id']; ?>" >
-					<button type="submit" name="description-update"> Update description </button>
-				</div>
-			</form>
-
-		<?php endif; ?>
 
 			<?php
-			$post_id = $post['id'];
-			$user = $pdo->prepare('SELECT * FROM comments WHERE post_id = :post_id;');
-		  $user->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-		  $user->execute();
-		  $comments = $user->fetchAll(PDO::FETCH_ASSOC);
+				$post_id = $post['id'];
+				$user = $pdo->prepare('SELECT * FROM comments WHERE post_id = :post_id;');
+			  $user->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+			  $user->execute();
+			  $comments = $user->fetchAll(PDO::FETCH_ASSOC);
 			?>
 
-			<div id="add-comment-<?= $post['id']; ?>">
-				<?php foreach($comments as $comment): ?>
-					<p id="edit-delete-comment-<?= $comment['id']; ?>"> <?= $comment['username'].": ".$comment['content']; ?></p>
-					<?php if($comment['user_id'] === $user_id): ?>
-						<i class="fas fa-edit"></i>
-					<div>
-						<form class="edit-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
-							<input type="hidden" name="comment-id" value="<?= $comment['id']; ?>">
-							<input type="text" name="edit-comment" required>
-							<button type="submit"> Edit </button>
-						</form>
+			<div class="comment-section" id="add-comment-<?= $post['id']; ?>">
+				<?php foreach($comments as $comment):
+					$dateComment = date_create($comment['created_at'], timezone_open('UTC'));
+					$timezone = 'Europe/Stockholm';
+					date_timezone_set($dateComment, timezone_open($timezone));
+					date_timezone_get($dateComment);	?>
+
+					<div class="comment-section-background">
+
+						<div class="comment-display">
+
+							<img class="comment-user-profile-pic" src="<?= '/assets/images/uploads/profile_pic/'.$comment['profile_pic']?>" alt="profile picture">
+							<?php if($comment['user_id'] === $user_id): ?>
+								<i class="fas fa-edit" data-id="<?= $comment['id']; ?>"></i>
+							<?php endif; ?>
+							<div class="comment-display-text">
+								<p id="edit-delete-comment-<?= $comment['id']; ?>"> <?= $comment['username'] ?> <span> <?= " " . $comment['content']; ?> </span> </p>
+								<p> <?= date_format($dateComment, 'd M H:i'); ?></p>
+							</div>
+						</div>
+
+							<?php if($comment['user_id'] === $user_id): ?>
+								<div class="hidden-icons show-comment-option-<?= $comment['id']; ?>">
+									<div class="comment-options-container">
+										<div>
+											<form class="edit-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
+												<input type="hidden" name="comment-id" value="<?= $comment['id']; ?>">
+												<input class="comment-edit-form" type="text" name="edit-comment" value="<?= $comment['content']; ?>" required>
+												<button class="delete-comment-form" type="submit"> Edit <i class="fas fa-pen comments-icons"></i></button>
+											</form>
+										</div>
+										<div>
+											<form class="delete-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
+												<input type="hidden" name="delete-comment-id" value="<?= $comment['id']; ?>">
+												<button class="delete-comment-form" type="submit"> Delete <i class="fas fa-trash-alt comments-icons"></i></button>
+											</form>
+										</div>
+									</div>
+								</div>
+
+						<?php endif; ?>
 					</div>
-					<div>
-						<form class="delete-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
-							<input type="hidden" name="delete-comment-id" value="<?= $comment['id']; ?>">
-							<button type="submit"> Delete comment </button>
-						</form>
-					</div>
-				<?php endif;
-				endforeach; ?>
-			</div>
+					<!-- </div> -->
+				<!-- </div> -->
+					<?php	endforeach; ?>
+				</div>
 
 			<form class="comments" method="post">
 				<label for=""> <?= $_SESSION['logedin']['username']; ?> </label>
@@ -113,15 +155,18 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 			</form>
 		</div>
 	</div>
+</div>
 			<?php
 		endforeach;
 	 ?>
 	</div>
 
+	<script type="text/javascript" src="assets2/scripts/main.js"> </script>
 	<script type="text/javascript" src="app/posts/likes.js"> </script>
 	<script type="text/javascript" src="app/posts/comments.js"> </script>
 	<script type="text/javascript" src="app/posts/edit_comment.js"> </script>
 	<script type="text/javascript" src="app/posts/delete_comment.js"> </script>
+	<!-- <script type="text/javascript" src="main.js"> </script> -->
 
 
 

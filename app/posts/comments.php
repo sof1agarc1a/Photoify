@@ -7,12 +7,16 @@ if(isset($_POST['new-comment'])) {
 	$user_id = $_SESSION['logedin']['user_id'];
 	$content = $_POST['new-comment'];
 	$username = $_SESSION['logedin']['username'];
+	$profile_pic = $_SESSION['logedin']['profile_pic'];
 
-	$statement = $pdo->prepare('INSERT INTO comments(user_id, post_id, content, username) VALUES(:user_id, :post_id, :content, :username);');
+
+	$statement = $pdo->prepare('INSERT INTO comments(user_id, post_id, content, username, profile_pic) VALUES(:user_id, :post_id, :content, :username, :profile_pic);');
 	$statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 	$statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
 	$statement->bindParam(':content', $content, PDO::PARAM_STR);
 	$statement->bindParam(':username', $username, PDO::PARAM_STR);
+	$statement->bindParam(':profile_pic', $profile_pic, PDO::PARAM_STR);
+
 
 	$statement->execute();
 

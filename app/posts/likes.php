@@ -48,6 +48,7 @@ if(isset($_POST['id'])) {
 	$statement = $pdo->query("SELECT COUNT(*) AS likes FROM likes WHERE post_id = '$post_id';");
 
 	$likes = $statement->fetchAll(PDO::FETCH_ASSOC);
+	$statement->execute();
 
 	$likes = json_encode($likes);
 	header('Content-Type: application/json');

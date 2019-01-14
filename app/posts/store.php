@@ -8,6 +8,7 @@ if(isset($_POST['post-upload'])) {
 	$postPic = $_FILES['upload-image'];
 	$user_id = $_SESSION['logedin']['user_id'];
 	$username = $_SESSION['logedin']['username'];
+	$profile_pic = $_SESSION['logedin']['profile_pic'];
 
 	if($postPic['size'] > 2500000) {
 		$_SESSION['pic-size'] = "The uploaded file exceeded the file size limit.";
@@ -26,11 +27,12 @@ if(isset($_POST['post-upload'])) {
 	move_uploaded_file($postPic['tmp_name'], $dir.$filename);
 
 
-	$user = $pdo->prepare('INSERT INTO posts (post_pic, description, user_id, username) VALUES(:post_pic, :description, :user_id, :username);');
+	$user = $pdo->prepare('INSERT INTO posts (post_pic, description, user_id, username, profile_pic) VALUES(:post_pic, :description, :user_id, :username, :profile_pic);');
 	$user->bindParam(':post_pic', $filename, PDO::PARAM_STR);
 	$user->bindParam(':description', $description, PDO::PARAM_STR);
 	$user->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 	$user->bindParam(':username', $username, PDO::PARAM_STR);
+	$user->bindParam(':profile_pic', $profile_pic, PDO::PARAM_STR);
 	$user->execute();
 
 }
