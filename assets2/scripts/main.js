@@ -1,23 +1,20 @@
 'use strict';
 
-let dotOptions = document.querySelectorAll('.dot-holder');
-let hiddenOptions = document.querySelectorAll('.options-post-form');
-let dot = document.querySelectorAll('.dot');
-let closeIcons = document.querySelectorAll('.close-icon');
+const dotOptions = document.querySelectorAll('.dot-holder');
 
 dotOptions.forEach(optionPost => optionPost.addEventListener('click', (event) => {
-	hiddenOptions.forEach(hiddenOption => hiddenOption.classList.toggle('hidden'));
-	dot.forEach(hideDot => hideDot.classList.toggle('hidden-icons'));
-	closeIcons.forEach(closeIcon => closeIcon.classList.toggle('visible-icons'));
+
+	const hiddenOption = document.querySelector(`.options-post-form-${optionPost.dataset.id}`);
+	hiddenOption.classList.toggle('hidden');
 }));
 
 
-let commentIcons = document.querySelectorAll('.fa-edit');
-console.log("hej")
-// let commentOptions = document.querySelector('.show-comment-option-<?= $comment['id']; ?>');
 
-// commentIcons.forEach(commentIcon => commentIcon.addEventListener('click', (event) => {
-//
-// 	commentOptions.forEach(commentOption => commentOption.classList.toggle('visible-icons'));
-//
-// }));
+const commentIcons = document.querySelectorAll('.fa-edit');
+
+commentIcons.forEach(commentIcon => commentIcon.addEventListener('click', (event) => {
+	const commentOptions = document.querySelector(`.show-comment-option-${commentIcon.dataset.id}`)
+	// commentOptions.forEach(commentOption => commentOption.classList.toggle('visible-icons'));
+	commentOptions.classList.toggle('visible-icons');
+
+}));

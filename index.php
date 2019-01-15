@@ -20,8 +20,6 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 <article class="margin-top">
 	<div class="logedin-article">
 		<?php	foreach($posts as $post):
-
-
 			$date = date_create($post['post_created_at'], timezone_open('UTC'));
 			$timezone = 'Europe/Stockholm';
 			date_timezone_set($date, timezone_open($timezone));
@@ -44,11 +42,10 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 
 				<?php if($post['user_id'] === $user_id): ?>
 					<div class="dots">
-						<div class="dot-holder">
+						<div class="dot-holder" data-id="<?= $post['id']?>">
 							<div class="dot"> </div>
 							<div class="dot"> </div>
 							<div class="dot"> </div>
-							<img class="close-icon" src="/assets/images/close-icon.svg">
 						</div>
 					</div>
 
@@ -63,7 +60,7 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 
 						<?php if($post['user_id'] === $user_id): ?>
 						<!-- <div class=> -->
-							<div class="options-post-form">
+							<div class="options-post-form options-post-form-<?= $post['id']?>">
 								<div class="both-options">
 									<form action="/app/posts/delete.php" method="post">
 										<input class="options-form" type="hidden" name="id" value="<?= $post['id']; ?>" >
@@ -124,19 +121,15 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 							<?php if($comment['user_id'] === $user_id): ?>
 								<div class="hidden-icons show-comment-option-<?= $comment['id']; ?>">
 									<div class="comment-options-container">
-										<div>
-											<form class="edit-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
-												<input type="hidden" name="comment-id" value="<?= $comment['id']; ?>">
-												<input class="comment-edit-form" type="text" name="edit-comment" value="<?= $comment['content']; ?>" required>
-												<button class="delete-comment-form" type="submit"> Edit <i class="fas fa-pen comments-icons"></i></button>
-											</form>
-										</div>
-										<div>
-											<form class="delete-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
-												<input type="hidden" name="delete-comment-id" value="<?= $comment['id']; ?>">
-												<button class="delete-comment-form" type="submit"> Delete <i class="fas fa-trash-alt comments-icons"></i></button>
-											</form>
-										</div>
+										<form class="edit-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
+											<input type="hidden" name="comment-id" value="<?= $comment['id']; ?>">
+											<input class=" comment-edit-form" type="text" name="edit-comment" value="<?= $comment['content']; ?>" required>
+											<button class=" delete-comment-form" type="submit"> Edit <i class="fas fa-pen comments-icons "></i></button>
+										</form>
+										<form class="delete-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
+											<input class=" " type="hidden" name="delete-comment-id" value="<?= $comment['id']; ?>">
+											<button class=" delete-comment-form " type="submit"> Delete <i class="fas fa-trash-alt comments-icons "></i></button>
+										</form>
 									</div>
 								</div>
 
@@ -156,16 +149,14 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 		</div>
 	</div>
 </div>
-			<?php
-		endforeach;
-	 ?>
+			<?php	endforeach; ?>
 	</div>
 
-	<script type="text/javascript" src="assets2/scripts/main.js"> </script>
+	<!-- <script type="text/javascript" src="assets2/scripts/main.js"> </script>
 	<script type="text/javascript" src="app/posts/likes.js"> </script>
 	<script type="text/javascript" src="app/posts/comments.js"> </script>
 	<script type="text/javascript" src="app/posts/edit_comment.js"> </script>
-	<script type="text/javascript" src="app/posts/delete_comment.js"> </script>
+	<script type="text/javascript" src="app/posts/delete_comment.js"> </script> -->
 	<!-- <script type="text/javascript" src="main.js"> </script> -->
 
 
