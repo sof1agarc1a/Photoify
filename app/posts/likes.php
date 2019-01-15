@@ -5,7 +5,7 @@ require __DIR__.'/../autoload.php';
 if(isset($_POST['id'])) {
 	$post_id = $_POST['id'];
 	$user_id = $_SESSION['logedin']['user_id'];
-
+	// $action = $_POST['action'];
 	// gets likes from post.
 	$statement = $pdo->prepare('SELECT * FROM posts WHERE id = :id;');
 	$statement->bindParam(':id', $post_id, PDO::PARAM_INT);
@@ -32,6 +32,9 @@ if(isset($_POST['id'])) {
 		$statement->bindParam(':id', $post_id, PDO::PARAM_INT);
 		$statement->execute();
 
+		// $action = 'liked';
+
+
 	} else {
 		// if the post isn't liked, it gets liked.
 		$statement = $pdo->prepare('INSERT INTO likes(user_id, post_id) VALUES(:user_id, :post_id);');
@@ -44,14 +47,32 @@ if(isset($_POST['id'])) {
 		$statement->bindParam(':id', $post_id, PDO::PARAM_INT);
 		$statement->execute();
 
+		// $action = 'disliked';
+
 	}
 	$statement = $pdo->query("SELECT COUNT(*) AS likes FROM likes WHERE post_id = '$post_id';");
 
 	$likes = $statement->fetchAll(PDO::FETCH_ASSOC);
 	$statement->execute();
 
+
+
 	$likes = json_encode($likes);
 	header('Content-Type: application/json');
 	echo $likes;
+
+
+	// $post_id = $post['id'];
+	//  $user_id = $_SESSION['logedin']['user_id'];
+	//
+	//
+	// $statement = $pdo->query("SELECT * FROM likes WHERE user_id= '$user_id' AND post_id='$post_id';");
+	//  $liked = $statement->fetch(PDO::FETCH_ASSOC);
+	//
+	// if ($liked) {
+	// 		$action = 'liked';
+	// } else {
+	// 		$action = 'disliked';
+	// };
 
 }

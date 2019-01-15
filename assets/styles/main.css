@@ -278,12 +278,17 @@ button:hover {
 
 }
 
+
 .fa-heart {
 	font-size: 34px;
 	color: white;
 	transition: 0.2s;
-
 }
+
+.likes input[value=liked] + button .fa-heart{
+  color: red;
+}
+
 
 .fa-heart:hover {
 	transform: scale(1.2);
@@ -537,6 +542,7 @@ button:hover {
 	transition: 0.4s ease;
 	visibility: visible;
 }
+
 
 @media only screen and (max-width: 1000px) {
 	.nav-hidden-mobile {

@@ -14,12 +14,27 @@ $user = $pdo->prepare('SELECT * FROM posts ORDER BY post_created_at DESC;');
 $user->execute();
 $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 
+
+
 ?>
 
 <!-- <p> MODE: </p> -->
 <article class="margin-top">
 	<div class="logedin-article">
 		<?php	foreach($posts as $post):
+			$post_id = $post['id'];
+	     $user_id = $_SESSION['logedin']['user_id'];
+
+
+			$statement = $pdo->query("SELECT * FROM likes WHERE user_id= '$user_id' AND post_id='$post_id';");
+	     $liked = $statement->fetch(PDO::FETCH_ASSOC);
+
+			if ($liked) {
+					$action = 'liked';
+			} else {
+					$action = 'disliked';
+			};
+
 			$date = date_create($post['post_created_at'], timezone_open('UTC'));
 			$timezone = 'Europe/Stockholm';
 			date_timezone_set($date, timezone_open($timezone));
@@ -30,11 +45,15 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 			<div class="each-post">
 			<img class="posted-image" src="<?= '/assets/images/uploads/post_pic/'.$post['post_pic']; ?>" alt="post picture">
 
+
 			<div class="comments-container">
 				<div class="likes-container">
-					<form class="likes" method="post" >
+					<form class="likes liked-heart" method="post" >
 						<input type="hidden" name="id" value="<?= $post['id']; ?>">
-						<button class="likes-heart" type="submit"><i class="far fa-heart"></i></button>
+
+						<input type="hidden" name="action" value="<?= $action ?>" />
+						<button class="likes-heart" type="submit" aria-hidden="true"><i class="fa fa-heart"></i></button>
+
 						<!-- <i class="fas fa-heart"></i> -->
 					</form>
 					<p class="number-likes"> <?= $post['likes']. " likes"; ?> </p>
@@ -105,7 +124,6 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 					date_timezone_get($dateComment);	?>
 
 					<div class="comment-section-background">
-
 						<div class="comment-display">
 
 							<img class="comment-user-profile-pic" src="<?= '/assets/images/uploads/profile_pic/'.$comment['profile_pic']?>" alt="profile picture">
@@ -123,20 +141,18 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 									<div class="comment-options-container">
 										<form class="edit-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
 											<input type="hidden" name="comment-id" value="<?= $comment['id']; ?>">
-											<input class=" comment-edit-form" type="text" name="edit-comment" value="<?= $comment['content']; ?>" required>
-											<button class=" delete-comment-form" type="submit"> Edit <i class="fas fa-pen comments-icons "></i></button>
+											<input class="comment-edit-form" type="text" name="edit-comment" value="<?= $comment['content']; ?>" required>
+											<button class="delete-comment-form" type="submit"> Edit <i class="fas fa-pen comments-icons "></i></button>
 										</form>
 										<form class="delete-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
-											<input class=" " type="hidden" name="delete-comment-id" value="<?= $comment['id']; ?>">
-											<button class=" delete-comment-form " type="submit"> Delete <i class="fas fa-trash-alt comments-icons "></i></button>
+											<input type="hidden" name="delete-comment-id" value="<?= $comment['id']; ?>">
+											<button class="delete-comment-form" type="submit"> Delete <i class="fas fa-trash-alt comments-icons "></i></button>
 										</form>
 									</div>
 								</div>
 
 						<?php endif; ?>
 					</div>
-					<!-- </div> -->
-				<!-- </div> -->
 					<?php	endforeach; ?>
 				</div>
 
