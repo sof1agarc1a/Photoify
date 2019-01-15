@@ -2,9 +2,9 @@
 
 const editFormsComments = document.querySelectorAll('.edit-comment');
 
-const editComment = (commentName, comment, commentId) => {
+const editComment = (comment, commentId) => {
   const textItem = document.querySelector(`#edit-delete-comment-${commentId}`);
-  textItem.textContent = commentName + ": " + comment;
+  textItem.textContent = comment;
 };
 
 editFormsComments.forEach(editFormComment => {
@@ -16,6 +16,6 @@ editFormsComments.forEach(editFormComment => {
 	      body: newFormComment
 	    })
 	    .then(response => response.json())
-			.then(editedComment => editComment(editedComment.username, editedComment.content, editedComment.id))
+			.then(editedComment => editComment(editedComment.content, editedComment.id))
 	});
 });

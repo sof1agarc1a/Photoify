@@ -270,7 +270,7 @@ button:hover {
 .likes-heart {
 	width: auto;
 	border: none;
-	text-shadow: 0px 0px 20px black;
+	/* text-shadow: 0px 0px 4px black; */
 }
 
 .likes-heart:hover {
@@ -282,16 +282,23 @@ button:hover {
 .fa-heart {
 	font-size: 34px;
 	color: white;
-	transition: 0.2s;
+	text-shadow: 0px 0px 4px black;
+	transition: 0.8s;
 }
 
 .likes input[value=liked] + button .fa-heart{
-  color: red;
+  /* color: #5F25CF; */
+	color: black;
+	background: -webkit-linear-gradient(#D76C6B,hotpink);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-shadow: none;
+	transition: 0.8s;
 }
 
 
 .fa-heart:hover {
-	transform: scale(1.2);
+	transform: scale(1.3);
 }
 
 .number-likes {
@@ -448,6 +455,10 @@ button:hover {
 	padding: 20px 56px 14px ;
 	background-color: rgba(0,0,0,.1);
 	margin: 0px -40px;
+	opacity: 1;
+	height: auto;
+	transition: 0.5s;
+	visibility: visible;
 }
 
 .comment-display {
@@ -490,9 +501,9 @@ button:hover {
 	align-items: center;
 }
 
-.fa-edit {
+.fa-edit, .fa-pen-square {
 	padding: 15px 0px 15px 12px;
-	color: rgba(0,0,0,.4);
+	color: rgba(0,0,0,.5);
 	cursor: pointer;
 	/* position: absolute; */
 }

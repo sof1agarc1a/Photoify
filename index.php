@@ -13,9 +13,6 @@ $user = $pdo->prepare('SELECT * FROM posts ORDER BY post_created_at DESC;');
 // $user->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 $user->execute();
 $posts = $user->fetchAll(PDO::FETCH_ASSOC);
-
-
-
 ?>
 
 <!-- <p> MODE: </p> -->
@@ -25,15 +22,13 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 			$post_id = $post['id'];
 	     $user_id = $_SESSION['logedin']['user_id'];
 
-
-			$statement = $pdo->query("SELECT * FROM likes WHERE user_id= '$user_id' AND post_id='$post_id';");
+			 $statement = $pdo->query("SELECT * FROM likes WHERE user_id= '$user_id' AND post_id='$post_id';");
 	     $liked = $statement->fetch(PDO::FETCH_ASSOC);
-
-			if ($liked) {
+			 	if ($liked) {
 					$action = 'liked';
-			} else {
+				} else {
 					$action = 'disliked';
-			};
+				};
 
 			$date = date_create($post['post_created_at'], timezone_open('UTC'));
 			$timezone = 'Europe/Stockholm';
@@ -50,13 +45,10 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 				<div class="likes-container">
 					<form class="likes liked-heart" method="post" >
 						<input type="hidden" name="id" value="<?= $post['id']; ?>">
-
 						<input type="hidden" name="action" value="<?= $action ?>" />
 						<button class="likes-heart" type="submit" aria-hidden="true"><i class="fa fa-heart"></i></button>
-
-						<!-- <i class="fas fa-heart"></i> -->
 					</form>
-					<p class="number-likes"> <?= $post['likes']. " likes"; ?> </p>
+					<p class="number-likes"> <?= $post['likes']; ?> </p>
 				</div>
 
 				<?php if($post['user_id'] === $user_id): ?>
@@ -78,7 +70,6 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 						</p>
 
 						<?php if($post['user_id'] === $user_id): ?>
-						<!-- <div class=> -->
 							<div class="options-post-form options-post-form-<?= $post['id']?>">
 								<div class="both-options">
 									<form action="/app/posts/delete.php" method="post">
@@ -123,28 +114,29 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 					date_timezone_set($dateComment, timezone_open($timezone));
 					date_timezone_get($dateComment);	?>
 
-					<div class="comment-section-background">
+					<div class="comment-section-background" id="edit-delete-form-<?= $comment['id']; ?>">
 						<div class="comment-display">
 
 							<img class="comment-user-profile-pic" src="<?= '/assets/images/uploads/profile_pic/'.$comment['profile_pic']?>" alt="profile picture">
 							<?php if($comment['user_id'] === $user_id): ?>
-								<i class="fas fa-edit" data-id="<?= $comment['id']; ?>"></i>
+								<i class="fas fa-pen-square" data-id="<?= $comment['id']; ?>"></i>
+
 							<?php endif; ?>
 							<div class="comment-display-text">
-								<p id="edit-delete-comment-<?= $comment['id']; ?>"> <?= $comment['username'] ?> <span> <?= " " . $comment['content']; ?> </span> </p>
-								<p> <?= date_format($dateComment, 'd M H:i'); ?></p>
+								<p> <?= $comment['username'] ?> <span id="edit-delete-comment-<?= $comment['id']; ?>"> <?= " " . $comment['content']; ?> </span> </p>
+								<p> <?= date_format($dateComment, 'd/m, H:i'); ?></p>
 							</div>
 						</div>
 
 							<?php if($comment['user_id'] === $user_id): ?>
 								<div class="hidden-icons show-comment-option-<?= $comment['id']; ?>">
 									<div class="comment-options-container">
-										<form class="edit-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
+										<form class="edit-comment" method="post">
 											<input type="hidden" name="comment-id" value="<?= $comment['id']; ?>">
 											<input class="comment-edit-form" type="text" name="edit-comment" value="<?= $comment['content']; ?>" required>
 											<button class="delete-comment-form" type="submit"> Edit <i class="fas fa-pen comments-icons "></i></button>
 										</form>
-										<form class="delete-comment" id="edit-delete-form-<?= $comment['id']; ?>" method="post">
+										<form class="delete-comment" method="post">
 											<input type="hidden" name="delete-comment-id" value="<?= $comment['id']; ?>">
 											<button class="delete-comment-form" type="submit"> Delete <i class="fas fa-trash-alt comments-icons "></i></button>
 										</form>
@@ -167,14 +159,5 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 </div>
 			<?php	endforeach; ?>
 	</div>
-
-	<!-- <script type="text/javascript" src="assets2/scripts/main.js"> </script>
-	<script type="text/javascript" src="app/posts/likes.js"> </script>
-	<script type="text/javascript" src="app/posts/comments.js"> </script>
-	<script type="text/javascript" src="app/posts/edit_comment.js"> </script>
-	<script type="text/javascript" src="app/posts/delete_comment.js"> </script> -->
-	<!-- <script type="text/javascript" src="main.js"> </script> -->
-
-
 
 <?php require __DIR__.'/views/footer.php'; ?>

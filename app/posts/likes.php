@@ -2,11 +2,11 @@
 declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
-if(isset($_POST['id'])) {
+if(isset($_POST['id'], $_POST['action'])) {
 	$post_id = $_POST['id'];
 	$user_id = $_SESSION['logedin']['user_id'];
-	// $action = $_POST['action'];
-	// gets likes from post.
+	$action = $_POST['action'];
+	// get likes from post.
 	$statement = $pdo->prepare('SELECT * FROM posts WHERE id = :id;');
 	$statement->bindParam(':id', $post_id, PDO::PARAM_INT);
 	$statement->execute();
