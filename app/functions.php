@@ -18,7 +18,7 @@ if (!function_exists('redirect')) {
 	{
 	if(isset($_SESSION[$message])):
 		echo $_SESSION[$message];
-		session_destroy();
+		unset($_SESSION[$message]);
 	endif;
 	}
 }

@@ -8,12 +8,6 @@ if(isset($_SESSION['logedin'])):
 endif;
 ?>
 
-<style>
-	nav {
-	  display: none;
-	}
-</style>
-
 <article>
 	<img class="login-img" src="http://www.futurepositivestudio.com/wp-content/uploads/2015/10/BL-Cold-Brew-Instagram-grid-2.jpg">
 

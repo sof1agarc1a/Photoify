@@ -17,12 +17,9 @@ if(isset($_POST['new-comment'])) {
 	$statement->bindParam(':username', $username, PDO::PARAM_STR);
 	$statement->bindParam(':profile_pic', $profile_pic, PDO::PARAM_STR);
 
-
 	$statement->execute();
 
-
 	$statement = $pdo->query("SELECT * FROM comments WHERE post_id = '$post_id';");
-
 
 	$comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 

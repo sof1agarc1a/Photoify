@@ -32,9 +32,6 @@ if(isset($_POST['id'], $_POST['action'])) {
 		$statement->bindParam(':id', $post_id, PDO::PARAM_INT);
 		$statement->execute();
 
-		// $action = 'liked';
-
-
 	} else {
 		// if the post isn't liked, it gets liked.
 		$statement = $pdo->prepare('INSERT INTO likes(user_id, post_id) VALUES(:user_id, :post_id);');
@@ -46,8 +43,6 @@ if(isset($_POST['id'], $_POST['action'])) {
 		$statement->bindParam(':likes', $likes, PDO::PARAM_INT);
 		$statement->bindParam(':id', $post_id, PDO::PARAM_INT);
 		$statement->execute();
-
-		// $action = 'disliked';
 
 	}
 	$statement = $pdo->query("SELECT COUNT(*) AS likes FROM likes WHERE post_id = '$post_id';");

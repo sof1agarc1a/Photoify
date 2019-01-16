@@ -8,20 +8,11 @@ if(isset($_SESSION['logedin'])):
 endif;
 
 ?>
-<style>
-	nav {
-	  display: none;
-	}
-</style>
 
 <!-- Login page -->
 
 <article>
 	<img class="login-img" src="http://www.futurepositivestudio.com/wp-content/uploads/2015/10/BL-Cold-Brew-Instagram-grid-2.jpg">
-
-<!-- https://snappygoat.com/o/1f5a390c8aece473fccb23b253940a3b3d0f9373/art-color-abstract-design-colorful-806357.jpg -->
-<!-- https://digitalart.io/storage/artworks/211/Abstract-Digital-Art-Wallpaper.jpeg -->
-<!-- https://hdqwalls.com/wallpapers/eagle-art.jpg -->
 
 	<div class="login-bg">
 		<p class="title-nav login-size"><span class="p login-size-p">P</span>hot<i style="font-size: 64px;"class="fas fa-camera-retro"></i>ify</p>

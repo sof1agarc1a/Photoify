@@ -76,8 +76,6 @@ const addComment = (commentUsername, commentContent, commentPost_id, commentId, 
 	}));
 };
 
-
-
 formsComments.forEach(form => {
 	form.addEventListener('submit', (event) => {
 	  event.preventDefault();
