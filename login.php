@@ -15,7 +15,7 @@ endif;
 	<img class="login-img" src="http://www.futurepositivestudio.com/wp-content/uploads/2015/10/BL-Cold-Brew-Instagram-grid-2.jpg">
 
 	<div class="login-bg">
-		<p class="title-nav login-size"><span class="p login-size-p">P</span>hot<i style="font-size: 64px;"class="fas fa-camera-retro"></i>ify</p>
+		<p class="title-nav login-size"><span class="p login-size-p">P</span>hot<i class="fas fa-camera-retro f-c-r-login"></i>ify</p>
 
 	<p class="sign-in"> sign in </p>
 	<hr> </hr>
@@ -27,11 +27,11 @@ endif;
 	?> </p>
 
   <form action="app/users/login.php" method="post">
-    <div class="form-group">
+    <div class="form-group form-group-mobile">
       <label for="username"><i class="fas fa-user"></i> username</label>
       <input id="username" type="text" name="username" value="sof1agarc1a">
     </div>
-    <div class="form-group">
+    <div class="form-group form-group-mobile">
       <label for="password"><i class="fas fa-lock"></i> password</label>
       <input id="password" type="password" name="password" value="sofia123">
     </div>

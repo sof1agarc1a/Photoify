@@ -12,18 +12,13 @@ endif;
 	<img class="login-img" src="http://www.futurepositivestudio.com/wp-content/uploads/2015/10/BL-Cold-Brew-Instagram-grid-2.jpg">
 
 	<div class="login-bg">
-		<p class="title-nav login-size"><span class="p login-size-p">P</span>hot<i style="font-size: 64px;"class="fas fa-camera-retro"></i>ify</p>
+		<p class="title-nav login-size"><span class="p login-size-p">P</span>hot<i class="fas fa-camera-retro f-c-r-login"></i>ify</p>
 		<p class="sign-in"> sign up </p> <hr> </hr>
 
 		<p class="alert-message">
 		<?php alert('empty'); ?> </p>
 
   <form action="app/users/create.php" method="post">
-		<div class="form-group">
-			<label for="name">full name</label>
-			<input id="name" type="text" name="full-name" value="Sofia Garcia">
-		</div>
-
 		<p class="alert-message">
 		<?php alert('username-taken'); ?> </p>
 

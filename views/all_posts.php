@@ -29,7 +29,7 @@ endif;
 			<div class="post-border">
 			<div class="each-post">
 
-				<div class="bajs"> </div>
+				<div class="shadow"> </div>
 				<img class="posted-image" src="<?= '/assets/images/uploads/post_pic/'.$post['post_pic']; ?>" alt="post picture">
 			<div class="comments-container">
 				<div class="likes-container">

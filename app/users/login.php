@@ -27,7 +27,6 @@ if(isset($_POST['username'], $_POST['password'])) {
   if(password_verify($password, $user['password'])) {
 		$_SESSION['logedin'] = [
 				'user_id' => $user['user_id'],
-				'fullname' => $user['full_name'],
 				'email' => $user['email'],
 				'username' => $user['username'],
 				'profile_pic' => $user['profile_pic'],

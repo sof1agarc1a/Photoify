@@ -3,7 +3,6 @@ declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
 if (isset($_POST['create-account'])) {
-	$fullname = trim(filter_var($_POST['full-name'], FILTER_SANITIZE_STRING));
 	$username = trim(filter_var($_POST['username'], FILTER_SANITIZE_STRING));
 	$email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
 	$password = $_POST['password'];
@@ -15,7 +14,7 @@ if (isset($_POST['create-account'])) {
 		redirect('/create.php');
 	}
 
-	if(empty($username) || empty($passwordHash) || empty($fullname)) {
+	if(empty($username) || empty($passwordHash)) {
 		$_SESSION['empty'] = "Please fill in the required fields!";
 		redirect('/create.php');
 	}
@@ -39,7 +38,7 @@ if (isset($_POST['create-account'])) {
 
 	// Insert new account into the database
   $user = $pdo->prepare("INSERT INTO users(full_name, username, email, password) VALUES(:fullname, :username, :email, :password);");
-	$user->bindParam(':fullname', $fullname, PDO::PARAM_STR);
+	$user->bindParam(':fullname', $username, PDO::PARAM_STR);
 	$user->bindParam(':username', $username, PDO::PARAM_STR);
 	$user->bindParam(':email', $email, PDO::PARAM_STR);
 	$user->bindParam(':password', $passwordHash, PDO::PARAM_STR);
@@ -53,7 +52,6 @@ if (isset($_POST['create-account'])) {
 	// If the user successfully created account login the new account directly
 	$_SESSION['logedin'] = [
 		'user_id' => $user['user_id'],
-		'fullname' => $user['full_name'],
 		'email' => $user['email'],
 		'username' => $user['username'],
 		'profile_pic' => $user['profile_pic'],
