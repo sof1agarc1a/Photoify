@@ -24,7 +24,7 @@ endif;
 
     <div class="form-group">
       <label for="username">username</label>
-      <input id="username" type="text" name="username" value="sof1agarc1a">
+      <input id="username" type="text" name="username">
     </div>
 
 		<p class="alert-message">
@@ -33,11 +33,11 @@ endif;
 
 		<div class="form-group">
 			<label for="email">email</label>
-			<input id="email" type="email" name="email" value="sofgar0614@gmail.com">
+			<input id="email" type="email" name="email">
 		</div>
     <div class="form-group">
       <label for="password">password</label>
-      <input id="password" type="password" name="password" value="sofia123">
+      <input id="password" type="password" name="password">
     </div>
 		<div class="button-login">
     	<button type="submit" name="create-account"><i class="fas fa-user-plus"></i> create account</button>

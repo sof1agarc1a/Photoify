@@ -91,7 +91,7 @@ endif;
 					alert('empty');?>
 				</p>
 				<label class="settings-label-2" for="password"><i class="fas fa-key"></i> password</label>
-				<input class="settings-input-2" type="password" name="password" value="sofia123">
+				<input class="settings-input-2" type="password" name="password">
 			</div>
 			<button class="settings-button-2 delete-account-button" type="submit" name="delete-account">Delete account</button>
 		</form>

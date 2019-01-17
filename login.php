@@ -29,11 +29,11 @@ endif;
   <form action="app/users/login.php" method="post">
     <div class="form-group form-group-mobile">
       <label for="username"><i class="fas fa-user"></i> username</label>
-      <input id="username" type="text" name="username" value="sof1agarc1a">
+      <input id="username" type="text" name="username">
     </div>
     <div class="form-group form-group-mobile">
       <label for="password"><i class="fas fa-lock"></i> password</label>
-      <input id="password" type="password" name="password" value="sofia123">
+      <input id="password" type="password" name="password">
     </div>
 		<div class="button-login">
 			<button type="submit"><i class="fas fa-sign-in-alt"></i> login</button>

@@ -264,7 +264,7 @@ button {
 }
 
 .shadow {
-	background-image: linear-gradient(to bottom left, transparent, transparent, rgba(0,0,0,.8));
+	background-image: linear-gradient(to bottom left, transparent, transparent, black);
 	width: 1020px;
 	height: 160px;
 	position: absolute;
@@ -914,7 +914,6 @@ input[type='file']{
  	font-size: 46px;
  }
 
-
  .menu-hover {
  	padding: 0;
  }
@@ -943,8 +942,6 @@ input[type='file']{
  i {
  	font-size: 22px;
  }
-
-/* LOGIN - KLAR */
 
 	.f-c-r-login {
 		font-size: 32px;
@@ -1025,20 +1022,6 @@ input[type='file']{
  	padding: 0;
  }
 
- /*KLAR*/
-
-/* TBX */
- .alert-message-settings {
- 	font-size: 18px;
- 	letter-spacing: 0.8px;
- 	color: black;
- 	padding: 0 8px;
- 	width: auto;
- 	margin-bottom: 6px;
- }
-
- /* TBX */
-
  .margin-top {
  	padding: 48px 0;
  }
@@ -1079,17 +1062,6 @@ input[type='file']{
  	margin-top: 30vh;
  }
 
- /* .likes-heart {
- 	width: auto;
- 	border: none;
-	font-size: 10px;
- }
-
- .likes-heart:hover {
- 	background-color: transparent;
- } */
-
-
  .fa-heart {
  	font-size: 32px;
  }
@@ -1126,18 +1098,6 @@ input[type='file']{
  	width: 54px;
  	height: 54px;
  }
-
- /* TBX */
-
- .nav-user-profile-pic {
- 	width: 40px;
- 	height: 40px;
- 	border-radius: 50%;
- 	margin-right: 14px;
- 	border: 2px solid rgba(0,0,0,.1);
- }
-
- /* TBX */
 
  .comment-user-profile-pic {
  	width: 36px;
@@ -1196,8 +1156,6 @@ input[type='file']{
  	font-size: 15px;
  }
 
-
-
  .comment-section {
  	margin: 24px 0;
  }
@@ -1225,17 +1183,6 @@ input[type='file']{
  .comment-display-text p:last-child {
  	font-size: 12px;
  }
-/*
- .follower-comments {
- 	display: flex;
- 	margin: 10px;
- }
-
- .comment-line {
- 	width: 12px;
- 	margin: 10px 10px;
- 	border: 0.5px solid rgba(0,0,0,.4);
- } */
 
  .comment-options-container {
  	width: 100%;
@@ -1275,12 +1222,6 @@ input[type='file']{
  	font-size: 34px;
  }
 
-
-
-
-
-
-
  .form-group-settings {
  	margin-top: 30px;
  }
@@ -1291,7 +1232,6 @@ input[type='file']{
 
  .center-all {
  	flex-direction: column;
- 	/* width: 100%; */
  }
 
  .settings-container {
@@ -1360,7 +1300,6 @@ input[type='file']{
 
  .delete-account-button {
  	border: 1.5px solid white;
- 	/* padding: 10px 20px; */
  	width: 280px;
  }
 
@@ -1390,8 +1329,6 @@ input[type='file']{
  	margin-top: 90px;
  }
 
-
- /* KLAR */
  .my-page-profile-pic {
  	width: 60px;
  	height: 60px;
