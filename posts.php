@@ -1,16 +1,4 @@
 <?php require __DIR__.'/views/header.php';?>
-
-
-<!-- <form action="app/users/update/update_profile_pic.php" method="post" enctype="multipart/form-data">
-	<div class="form-group">
-		<label class="preview-pic" for="file-input">
-			<img class="pic" src="<?= '/assets/images/uploads/profile_pic/'.$_SESSION['logedin']['profile_pic'] ?>" alt="profile picture">
-		</label>
-		<input id="file-input" class="settings-input-file" type="file" accept=".gif, .png, .jpg, .jpeg" name="new-profile-pic" onchange="handleFiles(this.files)" required>
-	</div>
-	<button class="settings-button s-b-bg" type="submit" name="update-profile-pic">Change picture <i class="fas fa-pen"></i></button>
-</form> -->
-
 <div class="add-post-container">
 	<form action="/app/posts/store.php" method="post" enctype="multipart/form-data">
 		<div>

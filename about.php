@@ -10,7 +10,12 @@ $user->execute();
 $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!-- <p> bio: </p> -->
+<style>
+	.margin-top {
+		padding: 0 0 30px;
+	}
+</style>
+
 <div class="margin-top-biography">
 	<div class="bio-container">
 		<a href="delete.php"><i class="fas fa-cogs color-fa-cogs"></i></a>
@@ -22,13 +27,6 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 			<div>
 				<p class="bio-weight"> <?= $_SESSION['logedin']['profile_bio']; ?> </p>
 			</div>
-
-			<!-- <div>
-				<p> Follow </p>
-			</div>
-			<div>
-				<p> <?= $_SESSION['logedin']['profile_bio']; ?> </p>
-			</div> -->
 		</div>
 	</div>
 </div>

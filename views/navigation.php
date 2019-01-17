@@ -1,7 +1,7 @@
 <?php if(isset($_SESSION['logedin'])): ?>
 <nav>
 
-  <a class="title-nav" href="/index.php"><span class="p">P</span>hotoify</a>
+  <a class="title-nav" href="/index.php"><span class="p">P</span><span class="photoify">hotoify</span></a>
   <ul>
     <li>
       <a class="menu-hover" href="/index.php"> <i class="fas hide-mobile fa-home"></i> <span class="nav-hidden-mobile"> home</span></a>
