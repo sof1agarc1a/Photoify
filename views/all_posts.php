@@ -29,27 +29,43 @@ endif;
 			<div class="post-border">
 			<div class="each-post">
 
-				<div class="shadow"> </div>
 				<img class="posted-image" src="<?= '/assets/images/uploads/post_pic/'.$post['post_pic']; ?>" alt="post picture">
-			<div class="comments-container">
-				<div class="likes-container">
-					<form class="likes liked-heart" method="post" >
-						<input type="hidden" name="id" value="<?= $post['id']; ?>">
-						<input type="hidden" name="action" value="<?= $action ?>" />
-						<button class="likes-heart" type="submit" aria-hidden="true"><i class="fa fa-heart"></i></button>
-					</form>
-					<p class="number-likes"> <?= $post['likes']; ?> </p>
-				</div>
 
-				<?php if($post['user_id'] === $user_id): ?>
-					<div class="dots">
-						<div class="dot-holder" data-id="<?= $post['id']?>">
-							<div class="dot"> </div>
-							<div class="dot"> </div>
-							<div class="dot"> </div>
-						</div>
+				<div class="comments-container">
+					<div class="likes-container">
+						<form class="likes liked-heart" method="post" >
+							<input type="hidden" name="id" value="<?= $post['id']; ?>">
+							<input type="hidden" name="action" value="<?= $action ?>" />
+							<button class="likes-heart" type="submit" aria-hidden="true"><i class="fa fa-heart"></i></button>
+						</form>
+						<p class="number-likes"> <?= $post['likes']; ?> </p>
 					</div>
 
+					<?php if($post['user_id'] === $user_id): ?>
+						<div class="dots">
+							<div class="dot-holder" data-id="<?= $post['id']?>">
+								<div class="dot"> </div>
+								<div class="dot"> </div>
+								<div class="dot"> </div>
+							</div>
+						</div>
+					<?php endif; ?>
+
+
+				<?php if($post['user_id'] === $user_id): ?>
+					<div class="options-post-form options-post-form-<?= $post['id']?>">
+						<div class="both-options">
+							<form action="/app/posts/update_description.php" method="post">
+								<input class="options-form-input" type="text" name="new-description" value="<?= $post['description']; ?>" required>
+								<button class="options-form" type="submit" name="description-update"> Edit <i class="fas fa-pen"></i></button>
+								<input type="hidden" name="id" value="<?= $post['id']; ?>" >
+							</form>
+							<form action="/app/posts/delete.php" method="post">
+								<input class="options-form" type="hidden" name="id" value="<?= $post['id']; ?>" >
+								<button class="options-form" type="submit" name="post-delete"> Delete <i class="fas fa-trash-alt"></i></button>
+							</form>
+						</div>
+					</div>
 				<?php endif; ?>
 
 				<div class="description-container">
@@ -58,24 +74,6 @@ endif;
 						<p class="username-post">
 							<?= $post['username']; ?>
 						</p>
-
-						<?php if($post['user_id'] === $user_id): ?>
-							<div class="options-post-form options-post-form-<?= $post['id']?>">
-								<div class="both-options">
-									<form action="/app/posts/delete.php" method="post">
-										<input class="options-form" type="hidden" name="id" value="<?= $post['id']; ?>" >
-										<button class="options-form" type="submit" name="post-delete"> Delete post <i class="fas fa-trash-alt"></i></button>
-									</form>
-
-									<form action="/app/posts/update_description.php" method="post">
-										<input class="options-form-input" type="text" name="new-description" value="<?= $post['description']; ?>" required>
-										<button class="options-form" type="submit" name="description-update"> Edit <i class="fas fa-pen"></i></button>
-										<input type="hidden" name="id" value="<?= $post['id']; ?>" >
-									</form>
-								</div>
-							</div>
-						<?php endif; ?>
-
 
 						 <p class="time-post">
 							<?= date_format($date, 'H:i d M Y'); ?>

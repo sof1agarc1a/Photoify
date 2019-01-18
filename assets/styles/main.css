@@ -249,7 +249,7 @@ button {
 
 .posted-image {
 	width: 1020px;
-	height: 690px;
+	height: auto;
 }
 
 .comments-container {
@@ -261,24 +261,12 @@ button {
 	margin-top: -100px;
 	width: 100%;
 	color: white;
-}
-
-.shadow {
-	background-image: linear-gradient(to bottom left, transparent, transparent, black);
-	width: 1020px;
-	height: 160px;
-	position: absolute;
-	margin-top: 530px;
-	opacity: 0.7;
+	text-shadow: 0px 0px 10px rgba(0,0,0,.8);
 }
 
 .likes-heart {
 	width: auto;
 	border: none;
-}
-
-.likes {
-	z-index: 1;
 }
 
 .likes-heart:hover {
@@ -289,7 +277,7 @@ button {
 .fa-heart {
 	font-size: 34px;
 	color: white;
-	text-shadow: 0px 0px 1px black;
+	text-shadow: 0px 0px 10px rgba(0,0,0,.5);
 	transition: 0.8s;
 }
 
@@ -301,7 +289,6 @@ button {
 	text-shadow: none;
 	transition: 0.8s;
 }
-
 
 .fa-heart:hover {
 	transform: scale(1.3);
@@ -393,34 +380,41 @@ button {
 	padding: 10px 0;
 }
 
+.shadow {
+	background-image: linear-gradient(to bottom left, transparent, transparent, red);
+	width: 1020px;
+	height: 160px;
+	position: absolute;
+	margin-top: 530px;
+	opacity: 0.7;
+}
+
 .options-post-form {
 	display: flex;
 	justify-content: flex-end;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: flex-end;
-	width: 870px;
-	height: 76px;
+	width: 920px;
+	height: 0px;
 	transition: 0.3s;
 	visibility: hidden;
-	position: absolute;
 	opacity: 0;
+	padding: 0 20px;
+}
+
+
+.hidden {
+	width: 920px;
+	height: 71px;
+	display: flex;
+	transition: 0.3s;
+	visibility: visible;
+	opacity: 1;
 }
 
 .both-options {
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	align-items: flex-end;
-}
-
-.hidden {
-	width: 870px;
-	height: 94px;
-	display: flex;
-	position: absolute;
-	transition: 0.3s;
-	visibility: visible;
-	opacity: 1;
+	z-index: 3;
 }
 
 .options-form {
@@ -429,11 +423,11 @@ button {
 	letter-spacing: 0.5px;
 	font-weight: normal;
 	width: auto;
-	margin-top: 8px;
+	margin: 8px 20px 0;
 	background-color: transparent;
 	font-size: 18px;
 	height: 40px;
-	transition: 0.15s;
+	transition: 0.3s;
 }
 
 .options-form:hover {
@@ -448,12 +442,14 @@ button {
 }
 
 .options-form-input {
-	background-color: white;
+	background-color: transparent;
 	color: black;
-	width: 200px;
-	padding-left: 16px;
+	width: 588px;
+	padding-left: 20px;
 	height: 40px;
-	font-size: 16px;
+	font-size: 20px;
+	border-radius: 0%;
+	border-bottom: 2px solid rgba(0,0,0,.2);
 }
 
 .comment-section {
@@ -900,7 +896,7 @@ input[type='file']{
 }
 
 
-@media only screen and (max-width: 1330px) {
+@media only screen and (max-width: 1170px) {
 	.nav-hidden-mobile {
 		display: none;
 	}
@@ -956,7 +952,7 @@ input[type='file']{
  }
 
  .login-bg {
- 	width: 87%;
+ 	width: 100%;
  	height: 90vh;
  	padding: 20px;
 	margin-top: 5vh;
@@ -1042,7 +1038,7 @@ input[type='file']{
 
  .posted-image {
  	width: 100%;
- 	height: 43vh;
+	height: auto;
  }
 
  .comments-container {
@@ -1053,13 +1049,6 @@ input[type='file']{
  	margin-top: -62px;
  	width: 100%;
 	height: 46px;
- }
-
- .shadow {
- 	background-image: linear-gradient(to bottom left, transparent, transparent, rgba(0,0,0,.6));
- 	width: 91vw;
- 	height: 13vh;
- 	margin-top: 30vh;
  }
 
  .fa-heart {
@@ -1126,23 +1115,13 @@ input[type='file']{
  }
 
  .options-post-form {
- 	width: 71vw;
-	right: 6.1vw;
- }
-
- .both-options {
-	width: 71vw;
+ 	width: 80vw;
+	padding: 0 8px;
  }
 
  .hidden {
- 	width: 71vw;
- 	height: 78px;
- }
-
- .options-form {
- 	letter-spacing: 0px;
- 	font-size: 16px;
- 	height: 26px;
+ 	width: 80vw;
+ 	height: 58px;
  }
 
  .fa-trash-alt, .fa-pen {
@@ -1150,14 +1129,27 @@ input[type='file']{
  	font-size: 15px;
  }
 
+ .both-options {
+	 width: 100%;
+ }
+
+ .options-form {
+ 	letter-spacing: 0px;
+ 	font-size: 16px;
+ 	height: 26px;
+	margin: 8px 0px 0;
+ }
+
  .options-form-input {
- 	width: 47vw;
- 	padding-left: 4vw;
+ 	width: 33vw;
+ 	padding: 0 8px;
  	font-size: 15px;
+	/* height: 20px; */
+
  }
 
  .comment-section {
- 	margin: 24px 0;
+ 	margin: 12px 0;
  }
 
  .comment-section-background {
@@ -1238,9 +1230,9 @@ input[type='file']{
  	background-color: rgba(255,255,255,.6);
  	padding: 40px 20px;
  	width: 100%;
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: center; */
  }
 
  .first-s-c {
@@ -1250,7 +1242,7 @@ input[type='file']{
 
  .settings-img {
  	width: 100%;
- 	height: 75.2vh;
+ 	height: 502px;
 	margin-top: 6px;
  }
 
@@ -1371,7 +1363,7 @@ input[type='file']{
  }
 
  .settings-button-3 {
- 	width: 100%;
+ 	width: 130px;
  	border: none;
  	font-family: 'Major Mono Display';
  	color: black;
@@ -1388,14 +1380,14 @@ input[type='file']{
  }
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 800px) {
 	.photoify {
 		display: none;
 	}
 
 	li {
 		display: inline;
-		margin: 8px 16px;
+		margin: 8px 18px;
 	}
 
 	ul {

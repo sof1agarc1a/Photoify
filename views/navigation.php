@@ -7,9 +7,6 @@
       <a class="menu-hover" href="/index.php"> <i class="fas hide-mobile fa-home"></i> <span class="nav-hidden-mobile"> home</span></a>
     </li>
     <li>
-      <a class="menu-hover" href="#"><i class="fas hide-mobile fa-search"></i> <span class="nav-hidden-mobile"> search</span></a>
-    </li>
-    <li>
       <a class="menu-hover" href="/posts.php"><i class="fas hide-mobile fa-camera-retro"></i> <span class="nav-hidden-mobile"> add post</span></a>
     </li>
     <li>
