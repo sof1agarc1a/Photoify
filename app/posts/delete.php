@@ -1,8 +1,10 @@
 <?php
-
 declare(strict_types=1);
-
 require __DIR__.'/../autoload.php';
+
+if(!isset($_SESSION['logedin'])):
+	redirect('/login.php');
+endif;
 
 if(isset($_POST['post-delete'])) {
 	$post_id = $_POST['id'];
@@ -12,7 +14,6 @@ if(isset($_POST['post-delete'])) {
 	$statement->bindParam(':id', $post_id, PDO::PARAM_INT);
 	$statement->execute();
 	$post_pic = $statement->fetch(PDO::FETCH_ASSOC);
-
 	$postPicName = $post_pic['post_pic'];
 
 	$user = $pdo->prepare('DELETE FROM posts WHERE id = :id');
@@ -28,7 +29,6 @@ if(isset($_POST['post-delete'])) {
 	$user->execute();
 
 	$dir = __DIR__.'/../../assets/images/uploads/post_pic/';
-
 	if(file_exists($dir.$postPicName)) {
 		unlink($dir.$postPicName);
 	}

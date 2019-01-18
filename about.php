@@ -9,13 +9,11 @@ $user->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 $user->execute();
 $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <style>
 	.margin-top {
 		padding: 0 0 30px;
-	}
+	};
 </style>
-
 <div class="margin-top-biography">
 	<div class="bio-container">
 		<a href="delete.php"><i class="fas fa-cogs color-fa-cogs"></i></a>
@@ -30,7 +28,6 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 		</div>
 	</div>
 </div>
-
 <?php
 require __DIR__.'/views/all_posts.php';
 require __DIR__.'/views/footer.php'; ?>

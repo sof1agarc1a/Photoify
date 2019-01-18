@@ -7,7 +7,6 @@ if(!isset($_SESSION['logedin'])):
 	redirect('/');
 endif;
 ?>
-
 <article class="margin-top center-all">
 	<div class="settings-container first-s-c">
 		<img class="settings-img" src="/assets/images/settings.jpeg">

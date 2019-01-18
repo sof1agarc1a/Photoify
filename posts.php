@@ -10,7 +10,6 @@
 			</label>
 			<input id="file-input" class="post-input-file" type="file" accept=".gif, .jpeg, .jpg, .png" name="upload-image" onchange="handleFiles(this.files)" required>
 		</div>
-
 		<div class="add-description-padding">
 			<label class="settings-label-2" for="upload-description"> description</label>
 			<input class="large-input" type="text" placeholder="Add description..." name="upload-description" required>
@@ -18,5 +17,4 @@
 		</div>
 	</form>
 </div>
-
 <?php require __DIR__.'/views/footer.php';?>

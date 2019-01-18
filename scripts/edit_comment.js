@@ -12,10 +12,10 @@ editFormsComments.forEach(editFormComment => {
 	  event.preventDefault();
 	  const newFormComment = new FormData(editFormComment);
 	  fetch('app/posts/edit_comment.php', {
-	      method: 'POST',
-	      body: newFormComment
-	    })
-	    .then(response => response.json())
-			.then(editedComment => editComment(editedComment.content, editedComment.id))
+      method: 'POST',
+      body: newFormComment
+    })
+    .then(response => response.json())
+		.then(editedComment => editComment(editedComment.content, editedComment.id))
 	});
 });

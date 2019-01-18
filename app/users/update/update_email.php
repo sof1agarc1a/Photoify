@@ -2,12 +2,21 @@
 declare(strict_types=1);
 require __DIR__.'/../../autoload.php';
 
+if(!isset($_SESSION['logedin'])):
+	redirect('/login.php');
+endif;
+
 if(isset($_POST['update-email'])) {
-	$email = filter_var($_POST['new-email'], FILTER_SANITIZE_EMAIL);
+	$email = trim(filter_var($_POST['new-email'], FILTER_SANITIZE_EMAIL));
 	$user_id = $_SESSION['logedin']['user_id'];
 
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		$_SESSION['invalid-email'] = "Please provide a valid email!";
+		redirect('/delete.php');
+	}
+
+	if(empty($email) {
+		$_SESSION['empty'] = "Please fill in the empty fields!";
 		redirect('/delete.php');
 	}
 

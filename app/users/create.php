@@ -35,7 +35,6 @@ if (isset($_POST['create-account'])) {
 		$_SESSION['email-taken'] = "This email is already registered.";
 		redirect('/create.php');
 	}
-
 	// Insert new account into the database
   $user = $pdo->prepare("INSERT INTO users(full_name, username, email, password) VALUES(:fullname, :username, :email, :password);");
 	$user->bindParam(':fullname', $username, PDO::PARAM_STR);

@@ -2,6 +2,10 @@
 declare(strict_types=1);
 require __DIR__.'/../../autoload.php';
 
+if(!isset($_SESSION['logedin'])):
+	redirect('/login.php');
+endif;
+
 if(isset($_POST['update-bio'])) {
 	$bio = filter_var($_POST['new-bio'], FILTER_SANITIZE_STRING);
 	$user_id = $_SESSION['logedin']['user_id'];

@@ -2,8 +2,11 @@
 declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
-if(isset($_POST['post-upload'])) {
+if(!isset($_SESSION['logedin'])):
+	redirect('/login.php');
+endif;
 
+if(isset($_POST['post-upload'])) {
 	$description = filter_var($_POST['upload-description'], FILTER_SANITIZE_STRING);
 	$postPic = $_FILES['upload-image'];
 	$user_id = $_SESSION['logedin']['user_id'];
@@ -26,7 +29,6 @@ if(isset($_POST['post-upload'])) {
 	$filename = "$user_id-$uniqueName-$postPicName";
 	move_uploaded_file($postPic['tmp_name'], $dir.$filename);
 
-
 	$user = $pdo->prepare('INSERT INTO posts (post_pic, description, user_id, username, profile_pic) VALUES(:post_pic, :description, :user_id, :username, :profile_pic);');
 	$user->bindParam(':post_pic', $filename, PDO::PARAM_STR);
 	$user->bindParam(':description', $description, PDO::PARAM_STR);
@@ -34,6 +36,5 @@ if(isset($_POST['post-upload'])) {
 	$user->bindParam(':username', $username, PDO::PARAM_STR);
 	$user->bindParam(':profile_pic', $profile_pic, PDO::PARAM_STR);
 	$user->execute();
-
 }
 redirect('/');

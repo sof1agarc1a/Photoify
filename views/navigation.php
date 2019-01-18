@@ -1,6 +1,5 @@
 <?php if(isset($_SESSION['logedin'])): ?>
 <nav>
-
   <a class="title-nav" href="/index.php"><span class="p">P</span><span class="photoify">hotoify</span></a>
   <ul>
     <li>

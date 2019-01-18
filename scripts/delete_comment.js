@@ -6,14 +6,12 @@ const deleteCommentFunction = (commentId) => {
 	//delete comment with forms (trashy af)
 	commentItem.style.opacity = "0";
 	commentItem.style.height = "0px";
-	commentItem.style.padding = "0px 56px";
+	commentItem.style.padding = "0px 22px";
 	commentItem.style.visibility = "hidden";
-
 	const commentItemInput = document.querySelector(`#edit-delete-form-${commentId}`).getElementsByTagName('input')
 	const commentItemButton = document.querySelector(`#edit-delete-form-${commentId}`).getElementsByTagName('button')
 	const commentItemForms = document.querySelector(`#edit-delete-form-${commentId}`).getElementsByTagName('form')
 	const commentItemDivs = document.querySelector(`#edit-delete-form-${commentId}`).getElementsByTagName('div')
-
 	commentItemInput[1].style.visibility = "hidden"
 	commentItemButton[0].style.visibility = "hidden"
 	commentItemButton[1].style.visibility = "hidden"

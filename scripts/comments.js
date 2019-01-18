@@ -1,7 +1,6 @@
 'use strict';
 
 const formsComments = document.querySelectorAll('.comments');
-
 const addComment = (commentUsername, commentContent, commentPost_id, commentId, commentProfile_pic, commentCreated_at, commentUser_id) => {
   const list = document.querySelector(`#add-comment-${commentPost_id}`);
 
@@ -14,7 +13,6 @@ const addComment = (commentUsername, commentContent, commentPost_id, commentId, 
 	const editForm = document.createElement('div');
 	editForm.className = "comment-section-background";
 	editForm.setAttribute("id", `edit-delete-form-${commentId}`);
-
 	const createEditCommentForm = `
 		<div class="comment-display">
 			<img class="comment-user-profile-pic" src="/assets/images/uploads/profile_pic/${commentProfile_pic}" alt="profile picture">

@@ -2,6 +2,10 @@
 declare(strict_types=1);
 require __DIR__.'/../../autoload.php';
 
+if(!isset($_SESSION['logedin'])):
+	redirect('/login.php');
+endif;
+
 if(isset($_POST['update-profile-pic'])) {
 	$profilePic = $_FILES['new-profile-pic'];
 	$user_id = $_SESSION['logedin']['user_id'];
@@ -23,7 +27,6 @@ if(isset($_POST['update-profile-pic'])) {
 	$currentPic = $currentPics['profile_pic'];
 
 	$dir = __DIR__.'/../../../assets/images/uploads/profile_pic/';
-
 	if($currentPic !== 'default_picture.jpg') {
 		unlink($dir.$currentPic);
 	}
@@ -31,7 +34,6 @@ if(isset($_POST['update-profile-pic'])) {
 	$profileName = $profilePic['name'];
 	$filename = "$user_id.profile_pic_$profileName";
 	move_uploaded_file($profilePic['tmp_name'], $dir.$filename);
-
 	$_SESSION['logedin']['profile_pic'] = $filename;
 
 	$statement = $pdo->prepare("UPDATE users SET profile_pic = :filename WHERE user_id = :user_id;");

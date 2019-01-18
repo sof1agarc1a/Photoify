@@ -22,15 +22,14 @@ if(isset($_POST['username'], $_POST['password'])) {
       $_SESSION['wrong'] = "Wrong email or password!";
       redirect('/login.php');
   }
-
 	// Verify the user password and log in
   if(password_verify($password, $user['password'])) {
 		$_SESSION['logedin'] = [
-				'user_id' => $user['user_id'],
-				'email' => $user['email'],
-				'username' => $user['username'],
-				'profile_pic' => $user['profile_pic'],
-				'profile_bio' => $user['profile_bio'],
+			'user_id' => $user['user_id'],
+			'email' => $user['email'],
+			'username' => $user['username'],
+			'profile_pic' => $user['profile_pic'],
+			'profile_bio' => $user['profile_bio'],
 		];
   };
 }
