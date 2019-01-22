@@ -15,7 +15,7 @@ if(isset($_POST['update-email'])) {
 		redirect('/delete.php');
 	}
 
-	if(empty($email) {
+	if(empty($email)) {
 		$_SESSION['empty'] = "Please fill in the empty fields!";
 		redirect('/delete.php');
 	}
