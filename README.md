@@ -34,5 +34,4 @@ Name|OS|Browser|Status
 
 ---
 [![StyleCI](https://github.styleci.io/repos/162306771/shield?branch=master)](https://github.styleci.io/repos/162306771)
-
-https://badgen.net/badge/stars/%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%86/green
+(https://badgen.net/badge/stars/%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%86/green)
