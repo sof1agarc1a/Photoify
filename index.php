@@ -10,4 +10,3 @@ $posts = $user->fetchAll(PDO::FETCH_ASSOC);
 
 require __DIR__.'/views/all_posts.php';
 require __DIR__.'/views/footer.php';
-?>

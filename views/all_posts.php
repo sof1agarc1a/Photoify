@@ -1,28 +1,28 @@
 <?php
 // If there is no user logged in redirect to the login page.
-if(!isset($_SESSION['logedin'])):
-	redirect('/login.php');
+if (!isset($_SESSION['logedin'])):
+    redirect('/login.php');
 endif;
 ?>
 
 <article class="margin-top">
 	<div class="logedin-article">
-		<?php	foreach($posts as $post):
-			$post_id = $post['id'];
-	     $user_id = $_SESSION['logedin']['user_id'];
-			 $statement = $pdo->query("SELECT * FROM likes WHERE user_id= '$user_id' AND post_id='$post_id';");
-	     $liked = $statement->fetch(PDO::FETCH_ASSOC);
-			 	if ($liked) {
-					$action = 'liked';
-				} else {
-					$action = 'disliked';
-				};
+		<?php	foreach ($posts as $post):
+            $post_id = $post['id'];
+         $user_id = $_SESSION['logedin']['user_id'];
+             $statement = $pdo->query("SELECT * FROM likes WHERE user_id= '$user_id' AND post_id='$post_id';");
+         $liked = $statement->fetch(PDO::FETCH_ASSOC);
+                if ($liked) {
+                    $action = 'liked';
+                } else {
+                    $action = 'disliked';
+                };
 
-				$date = date_create($post['post_created_at'], timezone_open('UTC'));
-				$timezone = 'Europe/Stockholm';
-				date_timezone_set($date, timezone_open($timezone));
-				date_timezone_get($date);
-				?>
+                $date = date_create($post['post_created_at'], timezone_open('UTC'));
+                $timezone = 'Europe/Stockholm';
+                date_timezone_set($date, timezone_open($timezone));
+                date_timezone_get($date);
+                ?>
 				<div class="post-border">
 				<div class="each-post">
 					<img class="posted-image" src="<?= '/assets/images/uploads/post_pic/'.$post['post_pic']; ?>" alt="post picture">
@@ -35,7 +35,7 @@ endif;
 							</form>
 							<p class="number-likes"> <?= $post['likes']; ?> </p>
 						</div>
-						<?php if($post['user_id'] === $user_id): ?>
+						<?php if ($post['user_id'] === $user_id): ?>
 						<div class="dots">
 							<div class="dot-holder" data-id="<?= $post['id']?>">
 								<div class="dot"> </div>
@@ -74,22 +74,22 @@ endif;
 							</p>
 						</div>
 						<?php
-							$post_id = $post['id'];
-							$user = $pdo->prepare('SELECT * FROM comments WHERE post_id = :post_id;');
-						  $user->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-						  $user->execute();
-						  $comments = $user->fetchAll(PDO::FETCH_ASSOC);
-						?>
+                            $post_id = $post['id'];
+                            $user = $pdo->prepare('SELECT * FROM comments WHERE post_id = :post_id;');
+                          $user->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+                          $user->execute();
+                          $comments = $user->fetchAll(PDO::FETCH_ASSOC);
+                        ?>
 						<div class="comment-section" id="add-comment-<?= $post['id']; ?>">
-							<?php foreach($comments as $comment):
-							$dateComment = date_create($comment['created_at'], timezone_open('UTC'));
-							$timezone = 'Europe/Stockholm';
-							date_timezone_set($dateComment, timezone_open($timezone));
-							date_timezone_get($dateComment);	?>
+							<?php foreach ($comments as $comment):
+                            $dateComment = date_create($comment['created_at'], timezone_open('UTC'));
+                            $timezone = 'Europe/Stockholm';
+                            date_timezone_set($dateComment, timezone_open($timezone));
+                            date_timezone_get($dateComment);	?>
 							<div class="comment-section-background" id="edit-delete-form-<?= $comment['id']; ?>">
 								<div class="comment-display">
 									<img class="comment-user-profile-pic" src="<?= '/assets/images/uploads/profile_pic/'.$comment['profile_pic']?>" alt="profile picture">
-									<?php if($comment['user_id'] === $user_id): ?>
+									<?php if ($comment['user_id'] === $user_id): ?>
 										<i class="fas fa-pen-square" data-id="<?= $comment['id']; ?>"></i>
 									<?php endif; ?>
 									<div class="comment-display-text">
@@ -97,7 +97,7 @@ endif;
 										<p> <?= date_format($dateComment, 'd/m, H:i'); ?></p>
 									</div>
 								</div>
-								<?php if($comment['user_id'] === $user_id): ?>
+								<?php if ($comment['user_id'] === $user_id): ?>
 								<div class="hidden-icons show-comment-option-<?= $comment['id']; ?>">
 									<div class="comment-options-container">
 										<form class="edit-comment" method="post">

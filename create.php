@@ -3,8 +3,8 @@ declare(strict_types=1);
 require __DIR__.'/views/header.php';
 
 // If the user is logged in redirect to the home-page
-if(isset($_SESSION['logedin'])):
-	redirect('/');
+if (isset($_SESSION['logedin'])):
+    redirect('/');
 endif;
 ?>
 
@@ -24,7 +24,7 @@ endif;
 	    </div>
 			<p class="alert-message">
 			<?php alert('email-taken');
-			alert('invalid-email'); ?> </p>
+            alert('invalid-email'); ?> </p>
 			<div class="form-group">
 				<label for="email">email</label>
 				<input id="email" type="email" name="email">

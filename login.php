@@ -3,8 +3,8 @@ declare(strict_types=1);
 require __DIR__.'/views/header.php';
 
 // If the user is logged in redirect to the home-page
-if(isset($_SESSION['logedin'])):
-	redirect('/');
+if (isset($_SESSION['logedin'])):
+    redirect('/');
 endif;
 ?>
 <article>
@@ -15,9 +15,9 @@ endif;
 		<hr>
 	 	<p class="alert-message">
 		<?php
-		alert('wrong');
-	 	alert('empty');
-		?> </p>
+        alert('wrong');
+        alert('empty');
+        ?> </p>
 	  <form action="app/users/login.php" method="post">
 	    <div class="form-group form-group-mobile">
 	      <label for="username"><i class="fas fa-user"></i> username</label>

@@ -3,8 +3,8 @@ declare(strict_types=1);
 require __DIR__.'/views/header.php'; ?>
 
 <?php
-if(!isset($_SESSION['logedin'])):
-	redirect('/');
+if (!isset($_SESSION['logedin'])):
+    redirect('/');
 endif;
 ?>
 <article class="margin-top center-all">
@@ -21,14 +21,14 @@ endif;
 		    <button class="settings-button s-b-bg" type="submit" name="update-profile-pic">Change picture</button>
 			</form>
 			<?php
-			if($_SESSION['logedin']['profile_pic'] != 'default_picture.jpg'): ?>
+            if ($_SESSION['logedin']['profile_pic'] != 'default_picture.jpg'): ?>
 			<form action="app/users/update/delete_profile_pic.php" method="post">
 				<button class="settings-button" type="submit" name="delete-profile-pic">Delete picture</button>
 			</form>
 			<?php endif; ?>
 			<p class="alert-message-settings">	<?php
-				alert('pic-type');
-				alert('pic-size'); ?>
+                alert('pic-type');
+                alert('pic-size'); ?>
 			</p>
 			<form action="app/users/update/update_bio.php" method="post">
 				<div class="form-group-settings">
@@ -44,9 +44,9 @@ endif;
 		<form action="app/users/update/update_username.php" method="post">
 			<div class="form-group-settings-2">
 				<p class="alert-message-settings"> <?php
-					alert('same-username');
-					alert('taken-username');
-					alert('uploaded-username');?>
+                    alert('same-username');
+                    alert('taken-username');
+                    alert('uploaded-username');?>
 				</p>
 				<label class="settings-label-2"><i class="fas fa-user-edit"></i> change username</label>
 				<input class="settings-input-2" type="text" name="new-username" value="<?= $_SESSION['logedin']['username'] ?>">
@@ -56,10 +56,10 @@ endif;
 		<form action="app/users/update/update_email.php" method="post">
 			<div class="form-group-settings-2">
 				<p class="alert-message-settings"> <?php
-					alert('invalid-email');
-					alert('same-email');
-					alert('taken-email');
-					alert('updated-email');?>
+                    alert('invalid-email');
+                    alert('same-email');
+                    alert('taken-email');
+                    alert('updated-email');?>
 				</p>
 				<label class="settings-label-2"><i class="fas fa-envelope"></i> change email</label>
 				<input class="settings-input-2" type="email" name="new-email" value="<?= $_SESSION['logedin']['email'] ?>">
@@ -69,9 +69,9 @@ endif;
 		<form action="app/users/update/update_password.php" method="post">
 			<div class="form-group-settings-2">
 				<p class="alert-message-settings"> <?php
-					alert('password-updated');
-					alert('wrong-password');
-					alert('empty-password');?>
+                    alert('password-updated');
+                    alert('wrong-password');
+                    alert('empty-password');?>
 				</p>
 				<label class="settings-label-2"><i class="fas fa-lock"></i> change password</label>
 				<label class="settings-label-3">Current password</label>
@@ -86,8 +86,8 @@ endif;
 		<form action="app/users/delete.php" method="post">
 			<div class="form-group-settings-2">
 				<p class="alert-message-settings"> <?php
-					alert('wrong');
-					alert('empty');?>
+                    alert('wrong');
+                    alert('empty');?>
 				</p>
 				<label class="settings-label-2" for="password"><i class="fas fa-key"></i> password</label>
 				<input class="settings-input-2" type="password" name="password">
