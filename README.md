@@ -33,3 +33,6 @@ Name|OS|Browser|Status
 [Charmaine Wang](https://github.com/charmaine-wang "Charmaine Wang GitHub")|macOS High Sierra 10.13.6|Google Chrome 71.0.3578.98|Working
 
 ---
+[![StyleCI](https://github.styleci.io/repos/162306771/shield?branch=master)](https://github.styleci.io/repos/162306771)
+
+https://badgen.net/badge/stars/%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%86/green
