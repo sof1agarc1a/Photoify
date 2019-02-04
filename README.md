@@ -34,4 +34,3 @@ Name|OS|Browser|Status
 
 ---
 [![StyleCI](https://github.styleci.io/repos/162306771/shield?branch=master)](https://github.styleci.io/repos/162306771)
- 
